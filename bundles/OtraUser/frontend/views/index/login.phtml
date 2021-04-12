@@ -1,0 +1,27 @@
+<?php
+declare(strict_types=1);
+require BASE_PATH . 'bundles/OtraUser/views/layout.phtml';
+
+block('title', 'Login');
+block('body');
+?>
+<form class="login-box flex-container-2 justify-content--center align-items--center direction-column" name="">
+  <h1 class="otra-login--title">Login</h1>
+  <div class="field-group">
+    <label for="otra-login" class="label ec-icon ec-bust-in-silhouette required login-box--label">Username or email</label>
+    <input id="otra-login" class="field" autocomplete="username" autofocus required />
+  </div>
+
+  <div class="field-group">
+    <label for="otra-password" class="label ec-icon ec-key required login-box--label">Password</label>
+    <input id="otra-password" type="password" class="field" autocomplete="current-password" required />
+  </div>
+
+  <div class="field-group field-group--remember">
+    <input type="checkbox" id="otra-remember"/>
+    <label for="otra-remember" class="label login-box--label">Remember me</label>
+  </div>
+
+  <input type="submit" class="ripple login-box--submit" value="Log in"/>
+</form>
+<?php endblock();

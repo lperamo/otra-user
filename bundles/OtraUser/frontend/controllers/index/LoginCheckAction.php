@@ -26,4 +26,3 @@ class LoginCheckAction extends Controller
     echo '{success:true}';
   }
 }
-

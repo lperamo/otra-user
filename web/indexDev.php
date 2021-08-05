@@ -1,11 +1,16 @@
 <?php
-declare(strict_types=1);
-
 /** Bootstrap of the framework - Development entry point
  *
- * @author Lionel Péramo */
-require __DIR__ . '/../config/constants.php';
+ * @author Lionel Péramo
+ */
+declare(strict_types=1);
 
+namespace otra\web;
+
+use const otra\cache\php\{BASE_PATH,CACHE_PATH,CORE_PATH};
+use const otra\cache\php\init\CLASSMAP;
+
+require __DIR__ . '/../config/constants.php';
 session_name('__Secure-LPSESSID');
 session_start([
   'cookie_secure' => true,
@@ -23,7 +28,7 @@ ini_set('html_errors', '1');
 error_reporting(-1 & ~E_DEPRECATED);
 
 /** CLASS MAPPING */
-require CACHE_PATH . 'php/ClassMap.php';
+require CACHE_PATH . 'php/init/ClassMap.php';
 
 /** MAIN CONFIGURATION */
 require BASE_PATH . 'config/AllConfig.php';

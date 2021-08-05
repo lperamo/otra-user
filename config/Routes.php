@@ -5,28 +5,28 @@
  * @author Lionel Péramo
  */
 declare(strict_types=1);
-namespace config;
+namespace otra\config;
+
+use const otra\cache\php\BUNDLES_PATH;
 
 /**
- * @package config
+ * @package otra\config
  */
 abstract class Routes
 {
-  public static array $default = [
-    'pattern' => '/frontend/index',
-    'bundle' => 'App',
-    'module' => 'frontend',
-    'controller' => 'index',
-    'action' => 'indexAction',
-    'route' => 'homePage'
-  ],
+  public const
+    ROUTES_CHUNKS_URL = 0,
+    ROUTES_CHUNKS_BUNDLE = 1,
+    ROUTES_CHUNKS_MODULE = 2,
+    ROUTES_CHUNKS_CONTROLLER = 3,
+    ROUTES_CHUNKS_ACTION = 4;
 
-  $allRoutes = [
+  public static array $allRoutes = [
     'otra_exception' => [
       'chunks' => ['exception'],
       'core' => true,
       'resources' => [
-        'core_css' => ['otraException'],
+        'core_css' => ['pages/otraException'],
         'core_js' => ['tools']
       ]
     ],
@@ -47,16 +47,30 @@ abstract class Routes
     'otra_404' => [
       'chunks' => ['/404', '', 'otra', 'errors', 'error404Action'],
       'core' => true
+    ],
+    'otra_css' => [
+      'chunks' => ['/profiler/css', '', 'otra', 'heavyProfiler', 'cssAction'],
+      'core' => true,
+      'resources' => [
+        'core_css' => ['pages/sassTree/sassTree']
+      ]
+    ],
+    'otra_template_structure' => [
+      'chunks' => ['/profiler/templateStructure', '', 'otra', 'heavyProfiler', 'templateStructureAction'],
+      'core' => true,
+      'resources' => [
+        'core_css' => ['pages/templateStructure/templateStructure']
+      ]
     ]
   ];
 
-  public static function init()
+  public static function init() : void
   {
     self::$allRoutes = array_merge(
       self::$allRoutes,
-      require BASE_PATH . 'bundles/config/Routes.php'); // TODO find a way to allow the parenthesis to be correctly placed ! For now, change it breaks the production task code :/
+      require BUNDLES_PATH . 'config/Routes.php'
+    );
   }
 }
 
-Routes:: init();
-
+Routes::init();

@@ -6,7 +6,7 @@ declare(strict_types=1);
  * @author Lionel Péramo */
 namespace otra\config;
 
-use const otra\cache\php\CACHE_PATH;
+use const otra\cache\php\{BASE_PATH, CACHE_PATH};
 
 define('otra\\cache\\php\\CACHE_TIME', 300); // 5 minutes(5*60)
 
@@ -33,5 +33,8 @@ abstract class AllConfig
       'maxChildren' => 128,
       'maxData' => 512,
       'maxDepth' => 3
+    ],
+    $taskFolders = [
+      BASE_PATH . 'bundles/OtraUser/tasks/'
     ];
 }

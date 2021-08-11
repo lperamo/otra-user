@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02f685c8ae7df652aabf71ed8987c200",
+    "content-hash": "9f36a071fc078c265a07fd678566213d",
     "packages": [
         {
             "name": "otra/otra",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/lperamo/otra.git",
-                "reference": "c319163533d848fde6ab08f5d9ca8d052d3461fd"
+                "reference": "3ea2b467d9efdd5a1c89e2a85297a7961ba1d5a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lperamo/otra/zipball/c319163533d848fde6ab08f5d9ca8d052d3461fd",
-                "reference": "c319163533d848fde6ab08f5d9ca8d052d3461fd",
+                "url": "https://api.github.com/repos/lperamo/otra/zipball/3ea2b467d9efdd5a1c89e2a85297a7961ba1d5a2",
+                "reference": "3ea2b467d9efdd5a1c89e2a85297a7961ba1d5a2",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +78,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-08-05T09:02:27+00:00"
+            "time": "2021-08-11T13:19:50+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -314,6 +314,7 @@
     "prefer-lowest": false,
     "platform": {
         "ext-mbstring": "*",
+        "ext-pdo": "*",
         "php": ">=8.0.0"
     },
     "platform-dev": [],

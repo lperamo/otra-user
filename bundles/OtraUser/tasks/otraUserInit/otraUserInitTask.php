@@ -21,7 +21,7 @@ const
 if (!isset(AllConfig::$dbConnections))
 {
   echo CLI_ERROR, 'The parameter ' . CLI_INFO_HIGHLIGHT, 'dbConnections', CLI_ERROR,
-    ' does not exist in your configuration file!', END_COLOR, PHP_EOL;
+    ' does not exist in your production configuration file!', END_COLOR, PHP_EOL;
   throw new OtraException('', 1, '', null, [], true);
 }
 
@@ -49,7 +49,7 @@ if (isset($argv[OTRA_USER_INIT_ARG_DB_CONNECTION_KEY]))
   if (empty(AllConfig::$defaultConn))
   {
     echo CLI_ERROR, 'There is no default database connection key in your ', CLI_INFO_HIGHLIGHT, 'defaultConnection',
-      CLI_ERROR, ' configuration parameter!', END_COLOR, PHP_EOL;
+    CLI_ERROR, ' configuration parameter!', END_COLOR, PHP_EOL;
     throw new OtraException('', 1, '', null, [], true);
   }
 
@@ -111,14 +111,15 @@ if (ROLES === 1)
     name NVARCHAR(255) UNIQUE NOT NULL
   );';
 }
+
 $statement = $db->prepare(
 //  'CREATE DATABASE IF NOT EXISTS `:database`;'
   'CREATE DATABASE IF NOT EXISTS `' . DB . '`;
   USE ' . DB . ';' . $queryRightsTable . $queryUserTable .');'
 );
+
 $statement->execute();
 $statement->closeCursor();
-
 try
 {
   $db->commit();

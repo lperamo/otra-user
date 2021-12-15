@@ -25,29 +25,33 @@ abstract class AllConfig
      aren't accessible ) */
     $cachePath = CACHE_PATH,
     $version = '1.0.0-alpha.2.5.0',
-    $defaultConn = ''; // mandatory in order to modify it later if needed
+    $defaultConn = 'otraUser';
 
   public static array
     $dbConnections = [
       'otraUser' => [
-        'driver' => 'PDOMySQL',
-        'host' => '127.0.0.1',
+        'driver' => 'Pdomysql',
+        'host' => 'localhost',
         'port' => '',
-//        'db' => 'otraUser',
+        'db' => 'otra_user',
         'motor' => 'InnoDB'
-      ]
+      ],
     ],
-    $debugConfig = [], // mandatory in order to modify it later if needed
+    $debugConfig = [
+      'maxChildren' => 256, // 128
+      'maxData' => 4096, //512
+      'maxDepth' => 6 // 3
+    ],
     $deployment = [
       'domainName' => 'otra-user.tech',
       'server' => 'lionelp@vps812032.ovh.net',
       'port' => 49153,
-  //    'folder' => '/var/www/html/perso/otra-user/',
+      //    'folder' => '/var/www/html/perso/otra-user/',
       'folder' => '/var/www/html/otra-user/',
       'privateSshKey' => '~/.ssh/id_rsa',
       'gcc' => true
-  ],
-  $pathsToAvoidForBuild = [
+    ],
+    $pathsToAvoidForBuild = [
     BASE_PATH . 'bundles/tasks/componentTasks/starters'
   ];
 }

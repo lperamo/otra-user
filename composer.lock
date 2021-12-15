@@ -4,33 +4,76 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f36a071fc078c265a07fd678566213d",
+    "content-hash": "421b0befd0def6d82dc786159be957e2",
     "packages": [
+        {
+            "name": "ecocomposer/ecocomposer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lperamo/ecocomposer.git",
+                "reference": "d97026cde8d81d39f6708860951a557cff38d9e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lperamo/ecocomposer/zipball/d97026cde8d81d39f6708860951a557cff38d9e0",
+                "reference": "d97026cde8d81d39f6708860951a557cff38d9e0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=8.0.0"
+            },
+            "default-branch": true,
+            "bin": [
+                "bin/ecocomposer.php"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "X11"
+            ],
+            "authors": [
+                {
+                    "name": "Lionel Péramo",
+                    "email": "contact@lionel-peramo.com",
+                    "homepage": "https://lionel-peramo.com"
+                }
+            ],
+            "description": "EcoComposer is a frontend library that aims to generate the least possible code to make your components fully functional.",
+            "homepage": "https://github.com/lperamo/otra",
+            "support": {
+                "issues": "https://github.com/lperamo/ecocomposer/issues",
+                "source": "https://github.com/lperamo/ecocomposer/tree/1.0"
+            },
+            "time": "2021-09-21T14:22:21+00:00"
+        },
         {
             "name": "otra/otra",
             "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lperamo/otra.git",
-                "reference": "3ea2b467d9efdd5a1c89e2a85297a7961ba1d5a2"
+                "reference": "b35f114d8cdc5bb6a3c3148341ddf4757641c123"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lperamo/otra/zipball/3ea2b467d9efdd5a1c89e2a85297a7961ba1d5a2",
-                "reference": "3ea2b467d9efdd5a1c89e2a85297a7961ba1d5a2",
+                "url": "https://api.github.com/repos/lperamo/otra/zipball/b35f114d8cdc5bb6a3c3148341ddf4757641c123",
+                "reference": "b35f114d8cdc5bb6a3c3148341ddf4757641c123",
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "php": ">=8.0.0",
+                "ext-openssl": "*",
+                "php": ">=8.1.0",
                 "symfony/yaml": "5.2.10"
             },
             "require-dev": {
                 "ext-curl": "*",
                 "ext-inotify": "*",
-                "ext-openssl": "*",
                 "ext-pdo": "*",
                 "ext-pdo_mysql": "*",
                 "ext-zlib": "*"
@@ -78,11 +121,11 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-08-11T13:19:50+00:00"
+            "time": "2021-12-14T10:53:59+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "dev-main",
+            "version": "2.5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
@@ -97,7 +140,6 @@
             "require": {
                 "php": ">=7.1"
             },
-            "default-branch": true,
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -154,16 +196,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "46cd95797e9df938fdd2b03693b5fca5e64b01ce"
+                "reference": "30885182c981ab175d4d034db0f6f469898070ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/46cd95797e9df938fdd2b03693b5fca5e64b01ce",
-                "reference": "46cd95797e9df938fdd2b03693b5fca5e64b01ce",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/30885182c981ab175d4d034db0f6f469898070ab",
+                "reference": "30885182c981ab175d4d034db0f6f469898070ab",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1"
+            },
+            "provide": {
+                "ext-ctype": "*"
             },
             "suggest": {
                 "ext-ctype": "For best performance"
@@ -210,7 +255,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.23.0"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/main"
             },
             "funding": [
                 {
@@ -226,7 +271,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-19T12:13:01+00:00"
+            "time": "2021-10-20T20:35:02+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -308,14 +353,15 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "ecocomposer/ecocomposer": 20,
         "otra/otra": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
+        "php": ">=8.1.0",
         "ext-mbstring": "*",
-        "ext-pdo": "*",
-        "php": ">=8.0.0"
+        "ext-pdo": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.1.0"

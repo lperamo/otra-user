@@ -1,0 +1,82 @@
+///
+/// @group Users
+/// @since 1.0
+/// @author Lionel Péramo
+///
+
+// loading SASS modules
+@use 'sass:map';
+
+// loading components
+@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/select/select';
+@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/theming/theming';
+@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/table/table';
+
+$-defaults : (
+  'themes' : (
+    'light': (
+      'default--login-form--background-color' : #eee,
+    ),
+    'dark': (
+      'default--login-form--background-color' : #333,
+    )
+  )
+);
+
+///
+/// Main mixin that initializes the users management page component.
+///
+/// @access public
+///
+@mixin init() {
+  :root {
+    font-size : 10px;
+  }
+
+  th,
+  td {
+    font-size : 1.6rem;
+  }
+}
+
+///
+/// Main mixin that creates login pages.
+///
+/// @access public
+/// @param  {array} $-options ()
+///
+@mixin create($-options : ()) {
+  $-themeUsed: map.has-key($-options, 'themes');
+  $-options : map.merge($-defaults, $-options);
+  $-themes : map.get($-options, 'themes');
+
+  // extracting variables...
+  // themes variables
+  //$-login-form--background-color : map.get($-options, 'login-form--background-color');
+
+  // classic variables
+  //$-main-style : map.get($-options, 'main-style');
+  @include select.init();
+  @include select.create(
+    (
+      'select--container--background-color' : null,
+      'select--container--background-image' : null,
+      'themes' : $-themes
+    )
+  );
+  @include table.init();
+  @include table.create(
+    (
+      'desktop--th-padding' : 1rem,
+      'mobile--th-padding' : 1rem,
+      'desktop--td-padding' : 1rem,
+      'mobile--td-padding' : 1rem,
+      'table-border' : null,
+      'themes' : $-themes
+    )
+  );
+
+  body.users-page {
+    @include theming.to-theme((#{&} : ('background-color', 'users--background-color')));
+  }
+}

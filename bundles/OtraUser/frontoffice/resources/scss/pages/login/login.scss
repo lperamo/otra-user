@@ -1,0 +1,57 @@
+// loading configuration
+@use '../../../../../resources/scss/configuration/themes' as *;
+
+// loading components
+@use '../../components/login/login';
+@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/flexContainer/flexContainer';
+@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/font/font';
+@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/labelAndField/labelAndField';
+@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/styledButtons/ripple';
+@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/theming/theming';
+
+// configuring components
+@include theming.init-themes($themes);
+@include flexContainer.create(
+  (
+    'align-items-center' : true,
+    'direction-column' : true,
+    'height' : null,
+    'justify-content-center' : true
+  )
+);
+@include flexContainer.create(
+  (
+    'direction-column' : true,
+    'height' : null,
+    'justify-content-center' : true,
+    'suffix' : '-2',
+    'width' : auto
+  )
+);
+@include font.create(
+  (
+    'icons' : ('bust-in-silhouette', 'key')
+  )
+);
+@include labelAndField.init();
+@include labelAndField.create(
+  (
+    'label-width' : 18rem,
+    'label--margin-bottom' : 1rem,
+    'position' : 'vertical'
+  )
+);
+@include ripple.create(
+  (
+    'border-radius' : 5px,
+    'themes' : $themes,
+  )
+);
+@include login.init();
+@include login.create(
+  (
+    'position' : 'vertical',
+    'themes' : $themes
+  )
+);
+@include theming.global-mass-theme();

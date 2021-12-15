@@ -1,0 +1,19 @@
+<?php
+declare(strict_types=1);
+namespace otraUser\bundles\OtraUser\frontend\views\index;
+use const otra\cache\php\BASE_PATH;
+use function otra\cache\php\{block, endblock};
+
+/**
+ * @var string $viewPath
+ */
+require BASE_PATH . 'bundles/OtraUser/views/layout.phtml';
+
+block('title', 'Backoffice - Users management');
+block('body');
+block('page', 'users-page');
+?>
+<button type="button" class="ripple -logout">Log out</button>
+<?php
+require $viewPath . 'partials/users.phtml';
+endblock();

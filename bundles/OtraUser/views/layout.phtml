@@ -40,7 +40,7 @@ require CORE_PATH . 'templating/blocks.php' ?>
 <meta property="og:url" content="https://otra.tech/">
 <meta property="og:site_name" content="<?= $title ?>>">
 </head>
-<body class="flex-container justify-content--center align-items--center">
+<body class="<?php block('page', '') ?> login-page flex-container justify-content--center align-items--center">
 <?php block('body'); ?>
 Hello!
 <?php endblock(); ?>

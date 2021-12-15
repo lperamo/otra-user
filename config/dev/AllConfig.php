@@ -24,9 +24,17 @@ abstract class AllConfig
     case (if we not use AllConfig::foo it will not load AllConfig even if it's in the use statement so the "defines"
      aren't accessible ) */
     $cachePath = CACHE_PATH,
-    $defaultConn = ''; // mandatory in order to modify it later if needed
+    $defaultConn = 'otraUser';
   public static array
-    $dbConnections = [],// mandatory in order to modify it later if needed
+    $dbConnections = [
+      'otraUser' => [
+        'driver' => 'Pdomysql',
+        'host' => 'localhost',
+        'port' => '',
+        'db' => 'otra_user',
+        'motor' => 'InnoDB'
+      ],
+    ],
     $debugConfig = [
       'autoLaunch' => true,
       'barPosition' => 'bottom',
@@ -38,3 +46,13 @@ abstract class AllConfig
       BASE_PATH . 'bundles/OtraUser/tasks/'
     ];
 }
+
+AllConfig::$dbConnections['otraUser'] = array_merge(
+  AllConfig::$dbConnections['otraUser'],
+  [
+    'host' => $_SERVER['DATABASE_HOST'],
+    'db' => $_SERVER['DATABASE_NAME'],
+    'login' => $_SERVER['DATABASE_LOGIN'],
+    'password' => $_SERVER['DATABASE_PASSWORD'],
+  ]
+);

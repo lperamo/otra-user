@@ -4,36 +4,78 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0d69a79194775c63813a7de0e033f7f3",
+    "content-hash": "421b0befd0def6d82dc786159be957e2",
     "packages": [
+        {
+            "name": "ecocomposer/ecocomposer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lperamo/ecocomposer.git",
+                "reference": "d97026cde8d81d39f6708860951a557cff38d9e0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lperamo/ecocomposer/zipball/d97026cde8d81d39f6708860951a557cff38d9e0",
+                "reference": "d97026cde8d81d39f6708860951a557cff38d9e0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=8.0.0"
+            },
+            "default-branch": true,
+            "bin": [
+                "bin/ecocomposer.php"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "X11"
+            ],
+            "authors": [
+                {
+                    "name": "Lionel Péramo",
+                    "email": "contact@lionel-peramo.com",
+                    "homepage": "https://lionel-peramo.com"
+                }
+            ],
+            "description": "EcoComposer is a frontend library that aims to generate the least possible code to make your components fully functional.",
+            "homepage": "https://github.com/lperamo/otra",
+            "support": {
+                "issues": "https://github.com/lperamo/ecocomposer/issues",
+                "source": "https://github.com/lperamo/ecocomposer/tree/1.0"
+            },
+            "time": "2021-09-21T14:22:21+00:00"
+        },
         {
             "name": "otra/otra",
             "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lperamo/otra.git",
-                "reference": "fe8564dbdcdd3bcd46bc744b33031758e6384947"
+                "reference": "3bc18d4bdcf59091cb47e07647058ce55a61d830"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lperamo/otra/zipball/fe8564dbdcdd3bcd46bc744b33031758e6384947",
-                "reference": "fe8564dbdcdd3bcd46bc744b33031758e6384947",
+                "url": "https://api.github.com/repos/lperamo/otra/zipball/3bc18d4bdcf59091cb47e07647058ce55a61d830",
+                "reference": "3bc18d4bdcf59091cb47e07647058ce55a61d830",
                 "shasum": ""
             },
             "require": {
                 "ext-fileinfo": "*",
                 "ext-json": "*",
                 "ext-mbstring": "*",
-                "php": ">=8.0.0",
-                "symfony/yaml": "^4.0"
+                "ext-openssl": "*",
+                "php": ">=8.1.0",
+                "symfony/yaml": "5.2.10"
             },
             "require-dev": {
                 "ext-curl": "*",
                 "ext-inotify": "*",
-                "ext-openssl": "*",
                 "ext-pdo": "*",
                 "ext-pdo_mysql": "*",
-                "ext-xdebug": "*",
                 "ext-zlib": "*"
             },
             "suggest": {
@@ -65,7 +107,88 @@
                 "issues": "https://github.com/lperamo/otra/issues",
                 "source": "https://github.com/lperamo/otra/tree/develop"
             },
-            "time": "2021-03-24T16:09:57+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/lperamo",
+                    "type": "github"
+                },
+                {
+                    "url": "https://liberapay.com/lperamo",
+                    "type": "liberapay"
+                },
+                {
+                    "url": "https://www.patreon.com/lperamo",
+                    "type": "patreon"
+                }
+            ],
+            "time": "2021-12-16T21:24:52+00:00"
+        },
+        {
+            "name": "symfony/deprecation-contracts",
+            "version": "2.5.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/deprecation-contracts.git",
+                "reference": "6f981ee24cf69ee7ce9736146d1c57c2780598a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/6f981ee24cf69ee7ce9736146d1c57c2780598a8",
+                "reference": "6f981ee24cf69ee7ce9736146d1c57c2780598a8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-main": "2.5-dev"
+                },
+                "thanks": {
+                    "name": "symfony/contracts",
+                    "url": "https://github.com/symfony/contracts"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "function.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "A generic function and convention to trigger deprecation notices",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/deprecation-contracts/tree/main"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-07-12T14:48:14+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -73,16 +196,19 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "c6c942b1ac76c82448322025e084cadc56048b4e"
+                "reference": "30885182c981ab175d4d034db0f6f469898070ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/c6c942b1ac76c82448322025e084cadc56048b4e",
-                "reference": "c6c942b1ac76c82448322025e084cadc56048b4e",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/30885182c981ab175d4d034db0f6f469898070ab",
+                "reference": "30885182c981ab175d4d034db0f6f469898070ab",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1"
+            },
+            "provide": {
+                "ext-ctype": "*"
             },
             "suggest": {
                 "ext-ctype": "For best performance"
@@ -91,7 +217,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "1.22-dev"
+                    "dev-main": "1.23-dev"
                 },
                 "thanks": {
                     "name": "symfony/polyfill",
@@ -129,7 +255,7 @@
                 "portable"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-ctype/tree/v1.22.1"
+                "source": "https://github.com/symfony/polyfill-ctype/tree/main"
             },
             "funding": [
                 {
@@ -145,35 +271,39 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-07T16:49:33+00:00"
+            "time": "2021-10-20T20:35:02+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "4.4.x-dev",
+            "version": "v5.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "416d6c0c43f1a63be90added5902a3c9b73c91e8"
+                "reference": "cd7930d6a7e0d8ceac299846235bc6e2e032c3a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/416d6c0c43f1a63be90added5902a3c9b73c91e8",
-                "reference": "416d6c0c43f1a63be90added5902a3c9b73c91e8",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/cd7930d6a7e0d8ceac299846235bc6e2e032c3a3",
+                "reference": "cd7930d6a7e0d8ceac299846235bc6e2e032c3a3",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.3",
+                "php": ">=7.2.5",
+                "symfony/deprecation-contracts": "^2.1",
                 "symfony/polyfill-ctype": "~1.8"
             },
             "conflict": {
-                "symfony/console": "<3.4"
+                "symfony/console": "<4.4"
             },
             "require-dev": {
-                "symfony/console": "^3.4|^4.0|^5.0"
+                "symfony/console": "^4.4|^5.0"
             },
             "suggest": {
                 "symfony/console": "For validating YAML files using the lint command"
             },
+            "bin": [
+                "Resources/bin/yaml-lint"
+            ],
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -200,7 +330,7 @@
             "description": "Loads and dumps YAML files",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/yaml/tree/4.4"
+                "source": "https://github.com/symfony/yaml/tree/v5.2.10"
             },
             "funding": [
                 {
@@ -216,21 +346,23 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-01T10:32:13+00:00"
+            "time": "2021-05-26T17:40:38+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "ecocomposer/ecocomposer": 20,
         "otra/otra": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
+        "php": ">=8.1.0",
         "ext-mbstring": "*",
-        "php": ">=7.4.0"
+        "ext-pdo": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.1.0"
 }

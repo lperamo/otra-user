@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" bootstrap="TestBootstrap.php" verbose="true"
+         xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/sebastianbergmann/phpunit/master/phpunit.xsd">
+  <coverage pathCoverage="true">
+    <include>
+      <directory suffix=".php">../</directory>
+      <directory suffix=".php">../bundles/*</directory>
+      <directory suffix=".php">../web/</directory>
+    </include>
+    <exclude>
+      <directory>./</directory>
+      <directory>./bundles/</directory>
+      <directory>../.git</directory>
+      <directory>../.idea</directory>
+      <directory>../bundles/config</directory>
+      <directory>../cache</directory>
+      <directory>../logs</directory>
+      <directory>./coverageHtml</directory>
+      <directory>./tests</directory>
+      <directory>./vendor</directory>
+    </exclude>
+    <report>
+      <clover outputFile="./coverage.xml"/>
+    </report>
+  </coverage>
+  <testsuites>
+    <testsuite name="Table creation task">
+      <file>bundles/OtraUser/tasks/otraUserInit/OtraUserInitTest.php</file>
+    </testsuite>
+  </testsuites>
+  <logging>
+    <junit outputFile="./report.xml"/>
+  </logging>
+</phpunit>

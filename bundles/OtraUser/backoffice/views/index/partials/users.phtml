@@ -1,0 +1,61 @@
+<?php
+declare(strict_types=1);
+/**
+ * @var array $users
+ * @var array $roles
+ */
+?>
+<table class="table suffix">
+  <thead class="table-header">
+    <tr>
+      <?php
+      foreach(array_keys($users[0]) as &$userKey)
+      {
+        if ($userKey === 'mask')
+          $userKey = 'role';
+
+      ?><th><?= $userKey ?></th><?php
+      }
+      unset($userKey);
+      ?>
+    </tr>
+  </thead>
+
+  <tbody>
+    <?php foreach ($users as $userKey => $user)
+    {
+    ?><tr><?php
+      foreach($user as $userInformationKey => $userInformation)
+      {
+        $userValue = $userInformation ?? 'null';
+      ?><td data-label="<?= $userInformationKey ?>">
+        <?php
+        if ($userInformationKey !== 'mask')
+          echo $userValue;
+        else
+        {?>
+          <button type="button" role="menu" class="select select-value">
+            <span class="select select-value--label"><?= $roles[$userValue] ?></span>
+            <span>&#x25bc;&#xfe0e;</span>
+          </button>
+          <div class="select select-container"><?php
+            foreach ($roles as $roleKey => $role)
+            {
+              $lcFirstOption = $user['id'] . '-' . lcfirst($role);
+              ?>
+              <input type="radio" role="menuitem" id="chk-<?= $lcFirstOption ?>-option" name="<?= $user['id'] ?>-select-radio"
+                     class="select select-item--activator" value="<?= $role ?>"<?php
+              if ($roleKey === array_key_first($roles))
+                echo ' checked';
+              ?>/>
+              <label for="chk-<?= $lcFirstOption ?>-option" class="select select-item--label"><?= $role ?></label><?php
+            }
+          ?></div><?php
+        }
+        ?>
+        </td><?php
+      }
+    ?></tr><?php
+    }?>
+  </tbody>
+</table>

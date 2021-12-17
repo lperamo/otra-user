@@ -1,0 +1,44 @@
+user:
+  columns:
+    id:
+      type: bigint unsigned
+      notnull: true
+      auto_increment: true
+      primary: true
+    fk_id_role:
+      type: tinyint unsigned
+      notnull: true
+    mail:
+      type: nvarchar(255)
+      notnull: true
+    pwd:
+      type: nvarchar(255)
+      notnull: true
+    pseudo:
+      type: nvarchar(255)
+    first_name:
+      type: nvarchar(255)
+    last_name:
+      type: nvarchar(255)
+    token:
+      type: varchar(255)
+
+  relations:
+    role:
+      local: fk_id_role
+      foreign: id
+      constraint_name: user_role
+
+role:
+  columns:
+    id:
+      type: tinyint unsigned
+      notnull: true
+      autoincrement: true
+      primary: true
+    mask:
+      type: mediumint unsigned
+      notnull: true
+    name:
+      type: nvarchar(255)
+      notnull: true

@@ -1,0 +1,17 @@
+///
+/// @group Users
+/// @since 1.0
+/// @author Lionel Péramo
+///
+
+// loading configuration
+@use '../../../../resources/scss/configuration/themes' as *;
+
+// loading components
+@use '../../../../../../vendor/ecocomposer/ecocomposer/components/theming/theming';
+@use '../components/users/users';
+
+@include users.init();
+@include users.create(
+  ('themes' : $themes)
+);

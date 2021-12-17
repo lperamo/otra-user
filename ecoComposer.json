@@ -1,0 +1,38 @@
+{
+  "licenseKey" : "6331df12c9615404e0a22b552550dd54",
+  "components" : [
+    "accordion",
+    "arrow",
+    "audioPlayer",
+    "breadcrumbs",
+    "card",
+    "carousel",
+    "font",
+    "counter",
+    "circledPercentage",
+    "charts/histogram",
+    "charts/pie",
+    "dialog",
+    "flexContainer",
+    "labelAndField",
+    "styledButtons",
+    "informationBar",
+    "list",
+    "table",
+    "tableSecondDesign",
+    "tabs",
+    "theming",
+    "tooltip",
+    "toTheTop",
+    "menu"
+  ],
+  "utils" : [
+    "fromRange",
+    "insertNth",
+    "remove",
+    "removeNth",
+    "replace",
+    "slice",
+    "utils"
+  ]
+}

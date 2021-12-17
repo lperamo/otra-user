@@ -21,7 +21,13 @@ Thumbs.db
 /cache
 /bin
 /LICENSE
-/**/*.css*
-/**/*.js*
+/**/*.css
+/**/*.js
+/**/*.js.map
 !/web/manifest.json
-
+tsconfig.json*
+config/prodConstants.php
+composer.phar
+.eslintrc.json
+.stylelintrc.json
+tests/.phpunit.result.cache

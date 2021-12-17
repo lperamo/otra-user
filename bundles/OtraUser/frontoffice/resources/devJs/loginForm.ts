@@ -5,8 +5,18 @@
   let
     $form : HTMLFormElement,
     $errorMessage : HTMLDivElement;
+
   const
     CHUNKS_URL: number = 0,
+    simpleHeaders: any = {
+      'x-requested-with': 'xmlhttprequest'
+    },
+    basicPostInit:RequestInit = {
+      method : 'POST',
+      credentials : 'same-origin'
+    },
+    loginTitle = 'Login',
+    usersManagementTitle = 'Users management',
     logIn = async function logIn(mouseEvent : MouseEvent) : Promise<false>
     {
       mouseEvent.preventDefault();
@@ -20,16 +30,14 @@
       formData.set('otra-remember', (formData.get('otra-remember') === 'on') ? '1' : '0');
 
       const
-        myHeaders = new Headers({
-          'x-requested-with': 'xmlhttprequest'
-        }),
         response : Response = await fetch(
           window['JS_ROUTING'].loginCheck.chunks[CHUNKS_URL],
-          {
-            body : formData,
-            method : 'POST',
-            credentials : 'same-origin',
-            headers: myHeaders
+      {
+            ...basicPostInit,
+            ...{
+              body : formData,
+              headers: simpleHeaders
+            }
           }
         ),
         responseData = await response.json();
@@ -49,10 +57,20 @@
           body.classList.remove('login-page');
           body.classList.add('users-page');
           window.history.pushState(
-            {},
-            'Users management',
+            {
+              requestInfo : window['JS_ROUTING'].users.chunks[CHUNKS_URL],
+              requestInit : {
+                ...basicPostInit,
+                headers: simpleHeaders
+              },
+              title: usersManagementTitle
+            },
+            usersManagementTitle,
             window['JS_ROUTING'].users.chunks[CHUNKS_URL]
           );
+
+          // Title is not implemented in most browsers as it is not standard, so we must set it explicitly
+          document.title = usersManagementTitle;
         } else
         {
           // Adds the error message if it is not already there
@@ -67,11 +85,52 @@
       return false;
     },
 
+    onPopState = async function onPopState(event: PopStateEvent): Promise<false>
+    {
+      const response : Response = await fetch(
+          event.state.requestInfo,
+          event.state.requestInit
+        ),
+        responseData = await response.json();
+
+      if (response.ok === false)
+      {
+        // hides the waiting message
+        // shows the waiting message
+      } else
+      {
+        if (responseData.success === true)
+        {
+          body.innerHTML = responseData.html;
+          body.classList.toggle('users-page', true);
+        } else
+        {
+          // hides the waiting message
+          // shows the waiting message
+        }
+      }
+
+      return false;
+    },
+
     pageReady = async function pageReady() : Promise<void>
     {
+      window.history.replaceState(
+  {
+          requestInfo : window['JS_ROUTING'].login.chunks[CHUNKS_URL],
+          requestInit : {
+            ...basicPostInit,
+            headers: simpleHeaders
+          },
+          title : loginTitle
+        },
+        loginTitle,
+        window['JS_ROUTING'].login.chunks[CHUNKS_URL]
+      );
       $errorMessage = document.querySelector('.error-message');
       $form = <HTMLFormElement> document.getElementsByClassName('login-box')[0];
       $form.addEventListener('submit', logIn);
+      window.addEventListener('popstate', onPopState);
     };
 
   'loading' !== document.readyState

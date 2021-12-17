@@ -2,8 +2,10 @@
 declare(strict_types=1);
 namespace bundles\OtraUser\backoffice\controllers\index;
 
-use bundles\OtraUser\backoffice\{config\Roles, services\UserService};
-use otra\{Controller, OtraException, Router, Session};
+use bundles\config\Roles;
+use bundles\OtraUser\backoffice\services\UserService;
+use otra\
+{config\Routes, Controller, OtraException, Router, Session};
 use ReflectionException;
 
 /**
@@ -26,12 +28,19 @@ class UsersAction extends Controller
     // If it is an AJAX request (most common case as we must use an SPA)
     if (isset($_SERVER['HTTP_X_REQUESTED_WITH']))
     {
+      Session::init();
       $userInformation = Session::getArrayIfExists(['userId', 'userRoleMask']);
 
       // Not logged-in users must be redirected to the login page
       if ($userInformation === false)
       {
-        header('Location: ' . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . Router::getRouteUrl('login'));
+        header(
+          'Location: ' .
+          (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']
+            ? 'https'
+            : 'http'
+          ) . '://' . $_SERVER['HTTP_HOST'] . Router::getRouteUrl('login')
+        );
         throw new OtraException(code: 0, exit: true);
       }
 
@@ -51,6 +60,14 @@ class UsersAction extends Controller
         ],
         true
       );
+      // If the actual url is the same that the used route, then we are using the JavaScript API History
+      if ($_SERVER['REQUEST_URI'] === Routes::$allRoutes[$this->route]['chunks'][Routes::ROUTES_CHUNKS_URL])
+        echo json_encode(
+          [
+            'success' => true,
+            'html' => $this->response
+          ]
+        );
     }
     else
       Router::get('notAjaxUsers', [], true, true);

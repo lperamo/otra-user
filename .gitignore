@@ -20,7 +20,6 @@ Thumbs.db
 /logs
 /cache
 /bin
-/LICENSE
 /**/*.css
 /**/*.js
 /**/*.js.map

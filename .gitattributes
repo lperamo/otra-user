@@ -5,7 +5,7 @@
 *.md diff=markdown
 *.php diff=php
 
-/github export-ignore
+/.github export-ignore
 /config export-ignore
 /tests export-ignore
 OTRA[[:space:]]PHPStorm.xml export-ignore

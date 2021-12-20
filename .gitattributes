@@ -5,6 +5,9 @@
 *.md diff=markdown
 *.php diff=php
 
+/.gitignore
+/.gitattributes
+/.stylelintignore
 /.github export-ignore
 /config export-ignore
 /tests export-ignore

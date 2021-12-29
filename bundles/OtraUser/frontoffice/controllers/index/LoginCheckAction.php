@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace bundles\OtraUser\frontoffice\controllers\index;
+namespace OtraUser\bundles\OtraUser\frontoffice\controllers\index;
 
 use bundles\OtraUser\frontoffice\services\UserService;
 use otra\Controller;
@@ -13,7 +13,7 @@ use ReflectionException;
 /**
  * OTRA login action
  *
- * @package bundles\OtraUser\frontoffice\controllers\index
+ * @package OtraUser\bundles\OtraUser\frontoffice\controllers\index
  */
 class LoginCheckAction extends Controller
 {

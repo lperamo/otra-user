@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "421b0befd0def6d82dc786159be957e2",
+    "content-hash": "c1108ad41d2c6209eb1550feee6fafc2",
     "packages": [
         {
             "name": "ecocomposer/ecocomposer",
@@ -55,12 +55,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/lperamo/otra.git",
-                "reference": "3bc18d4bdcf59091cb47e07647058ce55a61d830"
+                "reference": "3f748c58af7ee70e58e629992773e517aa49fb5a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lperamo/otra/zipball/3bc18d4bdcf59091cb47e07647058ce55a61d830",
-                "reference": "3bc18d4bdcf59091cb47e07647058ce55a61d830",
+                "url": "https://api.github.com/repos/lperamo/otra/zipball/3f748c58af7ee70e58e629992773e517aa49fb5a",
+                "reference": "3f748c58af7ee70e58e629992773e517aa49fb5a",
                 "shasum": ""
             },
             "require": {
@@ -121,7 +121,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-12-16T21:24:52+00:00"
+            "time": "2021-12-28T15:10:44+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",

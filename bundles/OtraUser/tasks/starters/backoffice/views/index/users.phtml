@@ -1,0 +1,9 @@
+<?php
+declare(strict_types=1);
+namespace OtraUser\bundles\OtraUser\frontend\views\index;
+use const otra\cache\php\BASE_PATH;
+
+/**
+ * @var string $viewPath
+ */
+require BASE_PATH . 'vendor/otra/user/' . substr($viewPath, strlen(BASE_PATH)) . 'users.phtml';

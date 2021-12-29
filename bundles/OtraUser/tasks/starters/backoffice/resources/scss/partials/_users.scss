@@ -7,12 +7,13 @@
 // loading OtraUser themes configuration
 @use 'configuration/themes' as *;
 
-// loading OtraUser partials
-@use 'partials/users';
-
 // loading EcoComposer components
 @use 'components/theming/theming';
 
-// Setting up EcoComposer components
-@include theming.init-themes($themes);
-@include theming.global-mass-theme();
+// loading OtraUser component
+@use 'components/users/users';
+
+@include users.init();
+@include users.create(
+  ('themes' : $themes)
+);

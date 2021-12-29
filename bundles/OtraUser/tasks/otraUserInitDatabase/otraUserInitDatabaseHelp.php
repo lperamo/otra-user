@@ -4,7 +4,7 @@
  */
 declare(strict_types=1);
 
-namespace otraUser\bundles\OtraUser\tasks;
+namespace OtraUser\bundles\OtraUser\tasks;
 
 use otra\console\TasksManager;
 

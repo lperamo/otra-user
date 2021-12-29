@@ -1,17 +1,16 @@
 <?php
 declare(strict_types=1);
-namespace bundles\OtraUser\backoffice\controllers\index;
+namespace OtraUser\bundles\OtraUser\backoffice\controllers\index;
 
 use bundles\config\Roles;
 use bundles\OtraUser\backoffice\services\UserService;
-use otra\
-{config\Routes, Controller, OtraException, Router, Session};
+use otra\{config\Routes, Controller, OtraException, Router, Session};
 use ReflectionException;
 
 /**
  * OTRA User management page
  *
- * @package bundles\OtraUser\backoffice\controllers\index
+ * @package OtraUser\bundles\OtraUser\backoffice\controllers\index
  */
 class NotAjaxUsersAction extends Controller
 {

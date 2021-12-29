@@ -1,0 +1,8 @@
+<?php
+declare(strict_types=1);
+use const otra\cache\php\BASE_PATH;
+
+/**
+ * @var string $viewPath
+ */
+require BASE_PATH . 'vendor/otra/user/' . substr($viewPath, strlen(BASE_PATH)) . 'partials/users.phtml';

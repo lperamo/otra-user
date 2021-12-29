@@ -1,17 +1,16 @@
 <?php
 declare(strict_types=1);
-namespace bundles\OtraUser\backoffice\controllers\index;
+namespace OtraUser\bundles\OtraUser\backoffice\controllers\index;
 
 use bundles\config\Roles;
 use bundles\OtraUser\backoffice\services\UserService;
-use otra\
-{config\Routes, Controller, OtraException, Router, Session};
+use otra\{config\Routes, Controller, OtraException, Router, Session};
 use ReflectionException;
 
 /**
  * OTRA User management page
  *
- * @package bundles\OtraUser\backoffice\controllers\index
+ * @package OtraUser\bundles\OtraUser\backoffice\controllers\index
  */
 class UsersAction extends Controller
 {
@@ -56,7 +55,8 @@ class UsersAction extends Controller
         'partials/users.phtml',
         [
           'roles' => $userManagementData[UserService::ROLES],
-          'users' => $userManagementData[UserService::USER_INFORMATION]
+          'users' => $userManagementData[UserService::USER_INFORMATION],
+          'viewPath' => $this->viewPath
         ],
         true
       );

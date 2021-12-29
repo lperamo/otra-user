@@ -42,7 +42,8 @@ abstract class AllConfig
       'maxData' => 512,
       'maxDepth' => 3
     ],
-    $taskFolders = [];
+    $taskFolders = [],
+    $sassLoadPaths = [];
 }
 
 AllConfig::$dbConnections['otraUser'] = array_merge(

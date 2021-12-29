@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace bundles\OtraUser\frontoffice\controllers\index;
+namespace OtraUser\bundles\OtraUser\frontoffice\controllers\index;
 
 use otra\{Controller, OtraException};
 
 /**
- * @package bundles\OtraUser\frontoffice\controllers\index
+ * @package OtraUser\bundles\OtraUser\frontoffice\controllers\index
  */
 class NotAjaxLoginFormAction extends Controller
 {

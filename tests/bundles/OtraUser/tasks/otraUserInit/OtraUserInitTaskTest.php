@@ -15,7 +15,6 @@ use const otra\cache\php\BASE_PATH;
 use const otra\console\CLI_ERROR;
 use const otra\console\CLI_INFO_HIGHLIGHT;
 use const otra\console\END_COLOR;
-use const otraUser\bundles\OtraUser\tasks\OTRA_USER_INIT_ARG_DB_CONNECTION_KEY;
 
 /**
  * @runTestsInSeparateProcesses

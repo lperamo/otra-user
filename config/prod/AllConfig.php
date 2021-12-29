@@ -53,7 +53,9 @@ abstract class AllConfig
     ],
     $pathsToAvoidForBuild = [
       BASE_PATH . 'bundles/tasks/componentTasks/starters'
-    ];
+    ],
+    $taskFolders = [],
+    $sassLoadPaths = [];
 }
 
 AllConfig::$dbConnections['otraUser'] = array_merge(

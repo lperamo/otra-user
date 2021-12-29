@@ -7,10 +7,10 @@
 // loading SASS modules
 @use 'sass:map';
 
-// loading components
-@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/select/select';
-@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/theming/theming';
-@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/table/table';
+// loading EcoComposer components
+@use 'components/select/select';
+@use 'components/theming/theming';
+@use 'components/table/table';
 
 $-defaults : (
   'themes' : (

@@ -7,12 +7,15 @@
 // loading OtraUser themes configuration
 @use 'configuration/themes' as *;
 
+// loading EcoComposer components
+@use 'components/theming/theming';
+@use 'components/styledButtons/ripple';
+
 // loading OtraUser partials
 @use 'partials/users';
 
-// loading EcoComposer components
-@use 'components/theming/theming';
-
-// Setting up EcoComposer components
 @include theming.init-themes($themes);
+@include ripple.create(
+  ('themes' : $themes)
+);
 @include theming.global-mass-theme();

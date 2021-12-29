@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace bundles\OtraUser\backoffice\services;
+namespace OtraUser\bundles\OtraUser\backoffice\services;
 
 use otra\bdd\Sql;
 use otra\OtraException;
@@ -9,7 +9,9 @@ class UserService
 {
   public const
     USER_INFORMATION = 0,
-    ROLES = 1;
+    ROLES = 1,
+    TABLE_USER = 'user',
+    TABLE_ROLE = 'role';
 
   /**
    * Gets user fields
@@ -23,8 +25,8 @@ class UserService
   {
     $db = Sql::getDb();
     $query = 'SELECT u.id, u.pseudo, u.first_name, u.last_name, u.mail, u.token, r.mask
-      FROM user u
-      JOIN role r on r.id = u.fk_id_role
+      FROM `' . static::TABLE_USER . '` u
+      JOIN `' . static::TABLE_ROLE . '` r on r.id = u.fk_id_role
       WHERE u.id = :userId';
 
     $statement = $db->prepare($query);
@@ -50,8 +52,8 @@ class UserService
   {
     $db = Sql::getDb();
     $query = 'SELECT u.id, u.pseudo, u.first_name, u.last_name, u.mail, u.token, r.mask
-      FROM user u
-      JOIN role r on r.id = u.fk_id_role';
+      FROM `' . static::TABLE_USER . '` u
+      JOIN `' . static::TABLE_ROLE . '` r on r.id = u.fk_id_role';
 
     $statement = $db->prepare($query);
 
@@ -61,7 +63,7 @@ class UserService
     $result = [$db->fetchAllAssoc($statement)];
     $db->freeResult($statement);
 
-    $query = 'SELECT r.id, r.name FROM role r';
+    $query = 'SELECT r.id, r.name FROM `' . static::TABLE_ROLE . '` r';
     $statement = $db->prepare($query);
 
     if (!$statement->execute())

@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace bundles\OtraUser\backoffice\controllers\index;
 
-use OtraUser\bundles\OtraUser\backoffice\controllers\index\NotAjaxUsersAction as NotAjaxUsersActionFromOtraUser;
+use otra\user\bundles\OtraUser\backoffice\controllers\index\NotAjaxUsersAction as NotAjaxUsersActionFromOtraUser;
 
 /**
  * @package bundles\OtraUser\backoffice\controllers\index

@@ -1,9 +1,10 @@
 <?php
 declare(strict_types=1);
-namespace OtraUser\bundles\OtraUser\backoffice\services;
+namespace otra\user\bundles\OtraUser\backoffice\services;
 
 use otra\bdd\Sql;
-use otra\OtraException;
+use otra\{OtraException, Router, Session};
+use ReflectionException;
 
 class UserService
 {
@@ -73,5 +74,37 @@ class UserService
     $db->freeResult($statement);
 
     return $result;
+  }
+
+  /**
+   * @param bool $sessionInit
+   *
+   * @throws OtraException
+   * @throws ReflectionException
+   * @return bool|array
+   */
+  public static function getUserInformationIfConnected(bool $sessionInit = true): bool|array
+  {
+    if ($sessionInit)
+      Session::init(7);
+
+    $userInformation = Session::getArrayIfExists(['userId', 'userRoleMask']);
+
+    // Not logged-in users must be redirected to the login page
+    if ($userInformation === false)
+    {
+      header(
+        'Location: ' .
+        (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']
+          ? 'https'
+          : 'http'
+        ) . '://' . $_SERVER['HTTP_HOST'] . Router::getRouteUrl('login')
+      );
+      throw new OtraException(code: 0, exit: true);
+    }
+
+    $_SESSION['sid'] = true; // Informs OTRA that a user is connected
+
+    return $userInformation;
   }
 }

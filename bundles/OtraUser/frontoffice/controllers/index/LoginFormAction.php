@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace OtraUser\bundles\OtraUser\frontoffice\controllers\index;
+namespace otra\user\bundles\OtraUser\frontoffice\controllers\index;
 
 use otra\{config\Routes, Controller, OtraException, Router};
 
@@ -10,6 +10,8 @@ use otra\{config\Routes, Controller, OtraException, Router};
  */
 class LoginFormAction extends Controller
 {
+  public string $response;
+
   /**
    * @param array $baseParams
    * @param array $getParams
@@ -27,12 +29,16 @@ class LoginFormAction extends Controller
 
       // If the actual url is the same that the used route, then we are using the JavaScript API History
       if ($_SERVER['REQUEST_URI'] === Routes::$allRoutes[$this->route]['chunks'][Routes::ROUTES_CHUNKS_URL])
-        echo json_encode([
-          'success' => true,
-          'html' => $this->response
-        ]);
+        echo json_encode(
+          [
+            'success' => true,
+            'html' => $this->response
+          ]
+        );
     }
     else
-      Router::get('notAjaxLogin', [], true, true);
+    {
+      $this->response = Router::get('notAjaxLogin', [], true, true)->response;
+    }
   }
 }

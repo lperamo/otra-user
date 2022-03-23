@@ -11,7 +11,7 @@ AllConfig::$taskFolders[] = constant(__NAMESPACE__ . '\\OTRA_USER_PATH') . 'bund
 AllConfig::$sassLoadPaths = [
   ...AllConfig::$sassLoadPaths,
   BASE_PATH . 'vendor/ecocomposer/ecocomposer/',
-  constant(__NAMESPACE__ . '\\OTRA_USER_PATH') . 'bundles/OtraUser/resources/scss',
-  constant(__NAMESPACE__ . '\\OTRA_USER_PATH') . 'bundles/OtraUser/backoffice/resources/scss',
-  constant(__NAMESPACE__ . '\\OTRA_USER_PATH') . 'bundles/OtraUser/frontoffice/resources/scss'
+  constant(__NAMESPACE__ . '\\OTRA_USER_PATH') . 'bundles/OtraUser/resources/scss/',
+  constant(__NAMESPACE__ . '\\OTRA_USER_PATH') . 'bundles/OtraUser/backoffice/resources/scss/',
+  constant(__NAMESPACE__ . '\\OTRA_USER_PATH') . 'bundles/OtraUser/frontoffice/resources/scss/'
 ];

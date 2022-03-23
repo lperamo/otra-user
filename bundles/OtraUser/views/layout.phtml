@@ -6,7 +6,7 @@ use function otra\cache\php\{block, endblock};
 
 require CORE_PATH . 'templating/blocks.php' ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="<?php block('page', '') ?>">
 <head>
 <meta charset="utf-8">
 <meta name=viewport content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,22 +25,22 @@ require CORE_PATH . 'templating/blocks.php' ?>
 <meta name="theme-color" content="#444">
 
 <!-- Google SEO-->
-<meta name=author content=https://plus.google.com/u/0/112398144630021094708?rel=author>
-<meta name=description content="<?= $title ?>">
+<meta name=author content="https://www.linkedin.com/in/lionel-p%C3%A9ramo-51439132/">
+<meta name=description content="<?php block('meta-description', $title); ?>">
 <meta name=robots content="index,follow,noodp">
 <meta name=googlebot content="index,follow">
 <meta name=google content=notranslate>
 
 <!-- IE Mobile-->
-<meta name="application-name" content="<?= $title ?>"/>
+<meta name="application-name" content="<?php block('application-name', $title); ?>"/>
 <meta name="msapplication-TileColor" content="#444"/>
 
 <!-- Facebook Open Graph -->
 <meta property="og:title" content="Want to develop faster websites ?">
 <meta property="og:url" content="https://otra.tech/">
-<meta property="og:site_name" content="<?= $title ?>>">
+<meta property="og:site_name" content="<?php block('og-site-name', $title); ?>>">
 </head>
-<body class="<?php block('page', '') ?> login-page flex-container justify-content--center align-items--center">
+<body class="flex-container suffix-login">
 <?php block('body'); ?>
 Hello!
 <?php endblock(); ?>

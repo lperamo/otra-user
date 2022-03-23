@@ -9,13 +9,14 @@
 @use 'sass:map';
 
 // loading EcoComposer components
-@use 'components/theming/theming';
+@use 'scss/components/theming/theming';
 
 $-defaults : (
   'login-form--background-color' : 'login-form--background-color',
   'login-form--box-shadow' : 'login-form--box-shadow',
   'login-form--color' : 'login-form--color',
   'login-form--error-message--color' : 'login-form--error-message--color',
+  'login-form--title-color' : 'login-form--title-color',
   'main--background-color' : 'main--background-color',
   'main-style' : true,
   'position' : 'horizontal',
@@ -26,6 +27,7 @@ $-defaults : (
       'default--login-form--box-shadow' : "2rem 2rem 6rem #ccc, -2rem -2rem 6rem #eee",
       'default--login-form--color' : #333,
       'default--login-form--error-message--color' : #e33,
+      'default--login-form--title-color' : #fff,
       'default--main--background-color' : #f0f0f0
     ),
     'dark': (
@@ -33,6 +35,7 @@ $-defaults : (
       'default--login-form--box-shadow' : "2rem 2rem 6rem #000000b3, -2rem -2rem 6rem #3a3a3ab3",
       'default--login-form--color' : #eee,
       'default--login-form--error-message--color' : #e33,
+      'default--login-form--title-color' : #fff,
       'default--main--background-color' : #222
     )
   )
@@ -86,6 +89,7 @@ $-defaults : (
   $-login-form--background-color : map.get($-options, 'login-form--background-color');
   $-login-form--box-shadow : map.get($-options, 'login-form--box-shadow');
   $-login-form--color : map.get($-options, 'login-form--color');
+  $-login-form--title-color : map.get($-options, 'login-form--title-color');
   $-login-form--error-message--color : map.get($-options, 'login-form--error-message--color');
   $-main--background-color : map.get($-options, 'main--background-color');
   $-position : map.get($-options, 'position');
@@ -102,34 +106,45 @@ $-defaults : (
 
     html,
     body {
-      margin     : 0;
-      min-height : 100vh;
       padding    : 0;
       width      : 100%;
     }
 
-    body.login-page {
-      @include theming.to-theme((#{&} : ('background-color', 'main--background-color')));
+    html[data-page='login-page']
+    {
+      &,
+      & > body {
+        margin     : 0;
+        min-height : 100vh;
+      }
+
+      & > body {
+        @include theming.to-theme((#{&} : ('background-color', 'main--background-color')));
+      }
     }
   }
 
   .login-box {
     @if ($-login-form--background-color != null) {
-      @include theming.to-theme((#{&} : ('background-color', 'login-form--background-color')));
+      @include theming.to-theme((#{&} : ('background-color', $-login-form--background-color)));
     }
 
     @if ($-login-form--box-shadow != null) {
-      @include theming.to-theme((#{&} : ('box-shadow', 'login-form--box-shadow')));
+      @include theming.to-theme((#{&} : ('box-shadow', $-login-form--box-shadow)));
     }
 
     @if ($-login-form--color != null) {
-      @include theming.to-theme((#{&} : ('color', 'login-form--color')));
+      @include theming.to-theme((#{&} : ('color', $-login-form--color)));
     }
   }
 
   .otra-login--title {
     // text
-    color       : #fff;
+    @if ($-login-form--title-color != null)
+    {
+      @include theming.to-theme((#{&} : ('color', $-login-form--title-color)));
+    }
+
     filter      : drop-shadow(.2rem .2rem .3rem #aaa);
     font-family : $-font;
     text-shadow : 0 0 .3rem #aaa;

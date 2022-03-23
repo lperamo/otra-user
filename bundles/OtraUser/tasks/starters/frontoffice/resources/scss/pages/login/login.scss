@@ -5,27 +5,29 @@
 @use 'components/login/login';
 
 // loading EcoComposer components
-@use 'components/flexContainer/flexContainer';
-@use 'components/font/font';
-@use 'components/labelAndField/labelAndField';
-@use 'components/styledButtons/ripple';
-@use 'components/theming/theming';
+@use 'scss/components/flexContainer/flexContainer';
+@use 'scss/components/font/font';
+@use 'scss/components/labelAndField/labelAndField';
+@use 'scss/components/styledButtons/ripple';
+@use 'scss/components/theming/theming';
 
 // configuring components
 @include theming.init-themes($themes);
+@include flexContainer.init();
 @include flexContainer.create(
   (
-    'align-items-center' : true,
-    'direction-column' : true,
+    'align-items' : center,
+    'flex-direction' : column,
     'height' : null,
-    'justify-content-center' : true
+    'justify-content' : center,
+    'suffix' : '-login'
   )
 );
 @include flexContainer.create(
   (
-    'direction-column' : true,
+    'flex-direction' : column,
     'height' : null,
-    'justify-content-center' : true,
+    'justify-content' : center,
     'suffix' : '-2',
     'width' : auto
   )

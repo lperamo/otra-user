@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-namespace OtraUser\bundles\OtraUser\frontoffice\services;
+namespace otra\user\bundles\OtraUser\frontoffice\services;
 
 use otra\bdd\Sql;
 use otra\OtraException;

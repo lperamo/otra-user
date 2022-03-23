@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace OtraUser\bundles\OtraUser\frontoffice\controllers\index;
+namespace otra\user\bundles\OtraUser\frontoffice\controllers\index;
 
 use otra\{Controller, OtraException};
 
 /**
- * @package OtraUser\bundles\OtraUser\frontoffice\controllers\index
+ * @package otra\user\bundles\OtraUser\frontoffice\controllers\index
  */
 class NotAjaxLoginFormAction extends Controller
 {
@@ -19,6 +19,11 @@ class NotAjaxLoginFormAction extends Controller
   public function __construct(array $baseParams = [], array $getParams = [])
   {
     parent::__construct($baseParams, $getParams);
-    echo $this->renderView('login.phtml');
+    $this->response = $this->renderView('login.phtml');
+
+    if (isset($_SERVER['HTTP_X_REQUESTED_WITH']))
+      return $this->response;
+    else
+      echo $this->response;
   }
 }

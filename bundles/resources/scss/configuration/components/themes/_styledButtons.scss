@@ -1,0 +1,19 @@
+$-theme--light--ripple--background-color: #c30;
+$-theme--dark--ripple--background-color: #c30;
+
+$themes: (
+  'light': (
+    'ripple--color' : #eee,
+    'ripple--color-2' : #eee, // for modal and calendar components
+    'ripple--active--background-color' : lighten($-theme--light--ripple--background-color, 10),
+    'ripple--hover--background-color' : $-theme--light--ripple--background-color,
+    'ripple--background-color' : darken($-theme--light--ripple--background-color, 10),
+  ),
+  'dark': (
+    'ripple--color' : #eee,
+    'ripple--color--2' : #eee, // for modal and calendar components
+    'ripple--active--background-color' : lighten($-theme--dark--ripple--background-color, 10),
+    'ripple--hover--background-color' : $-theme--dark--ripple--background-color,
+    'ripple--background-color' : darken($-theme--dark--ripple--background-color, 10),
+  )
+);

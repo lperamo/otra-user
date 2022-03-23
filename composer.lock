@@ -55,12 +55,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/lperamo/otra.git",
-                "reference": "3f748c58af7ee70e58e629992773e517aa49fb5a"
+                "reference": "123c804d73617fd4a79a7523c9bf8dc372d0ff3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lperamo/otra/zipball/3f748c58af7ee70e58e629992773e517aa49fb5a",
-                "reference": "3f748c58af7ee70e58e629992773e517aa49fb5a",
+                "url": "https://api.github.com/repos/lperamo/otra/zipball/123c804d73617fd4a79a7523c9bf8dc372d0ff3d",
+                "reference": "123c804d73617fd4a79a7523c9bf8dc372d0ff3d",
                 "shasum": ""
             },
             "require": {
@@ -121,7 +121,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2021-12-28T15:10:44+00:00"
+            "time": "2022-03-08T15:54:27+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",

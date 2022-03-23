@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace bundles\OtraUser\frontoffice\controllers\index;
 
-use OtraUser\bundles\OtraUser\frontoffice\controllers\index\LoginCheckAction as LoginCheckActionFromOtraUser;
+use otra\user\bundles\OtraUser\frontoffice\controllers\index\LoginCheckAction as LoginCheckActionFromOtraUser;
 
 /**
  * @package bundles\OtraUser\frontoffice\controllers\index

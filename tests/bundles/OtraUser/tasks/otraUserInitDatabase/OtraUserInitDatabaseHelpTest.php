@@ -1,26 +1,21 @@
 <?php
 declare(strict_types=1);
 
-namespace bundles\OtraUser\tasks\otraUserInit;
+namespace bundles\OtraUser\tasks\otraUserInitDatabase;
 
 use otra\console\TasksManager;
 use otra\OtraException;
 use phpunit\framework\TestCase;
 use const otra\bin\TASK_CLASS_MAP_PATH;
-use const otra\console\CLI_BASE;
-use const otra\console\CLI_GRAY;
-use const otra\console\CLI_INFO;
-use const otra\console\CLI_INFO_HIGHLIGHT;
-use const otra\console\END_COLOR;
-use const otra\console\STRING_PAD_FOR_OPTION_FORMATTING;
+use const otra\console\{CLI_BASE, CLI_GRAY, CLI_INFO, CLI_INFO_HIGHLIGHT, END_COLOR};
 
 /**
  * @runTestsInSeparateProcesses
  */
-class OtraUserInitHelpTest extends TestCase
+class OtraUserInitDatabaseHelpTest extends TestCase
 {
   private const
-    TASK_OTRA_USER_INIT = 'otraUserInit',
+    TASK_OTRA_USER_INIT = 'otraUserInitDatabase',
     OTRA_TASK_HELP = 'help';
 
   /**

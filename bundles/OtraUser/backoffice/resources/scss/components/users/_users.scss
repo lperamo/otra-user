@@ -7,10 +7,14 @@
 // loading SASS modules
 @use 'sass:map';
 
+// Loading EcoComposer themes
+@use 'bundles/resources/scss/configuration/components/themes/select' as selectThemes;
+@use 'bundles/resources/scss/configuration/components/themes/table' as tableThemes;
+
 // loading EcoComposer components
-@use 'components/select/select';
-@use 'components/theming/theming';
-@use 'components/table/table';
+@use 'scss/components/select/select';
+@use 'scss/components/theming/theming';
+@use 'scss/components/table/table';
 
 $-defaults : (
   'themes' : (
@@ -48,14 +52,22 @@ $-defaults : (
 @mixin create($-options : ()) {
   $-themeUsed: map.has-key($-options, 'themes');
   $-options : map.merge($-defaults, $-options);
-  $-themes : map.get($-options, 'themes');
+  $-themes : theming.merge-themes(
+    (
+      map.get($-options, 'themes'),
+      selectThemes.$themes,
+      tableThemes.$themes
+    )
+  );
 
-  // extracting variables...
-  // themes variables
-  //$-login-form--background-color : map.get($-options, 'login-form--background-color');
+  $-themes: theming.merge-themes(
+    (
+      $-themes,
+      selectThemes.$themes,
+      tableThemes.$themes
+    )
+  );
 
-  // classic variables
-  //$-main-style : map.get($-options, 'main-style');
   @include select.init();
   @include select.create(
     (

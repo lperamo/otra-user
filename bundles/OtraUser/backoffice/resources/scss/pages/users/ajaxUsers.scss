@@ -7,12 +7,22 @@
 // loading OtraUser themes configuration
 @use 'configuration/themes' as *;
 
+// Loading EcoComposer themes
+@use 'bundles/resources/scss/configuration/components/themes/select' as selectThemes;
+
 // loading OtraUser partials
 @use 'partials/users';
 
 // loading EcoComposer components
-@use 'components/theming/theming';
+@use 'scss/components/theming/theming';
 
 // Setting up EcoComposer components
+$themes : theming.merge-themes(
+  (
+    $themes,
+    selectThemes.$themes,
+  )
+);
+
 @include theming.init-themes($themes);
 @include theming.global-mass-theme();

@@ -1,9 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace bundles\OtraUser\frontoffice\controllers\index;
+namespace otra\user\bundles\OtraUser\frontoffice\controllers\index;
 
-use bundles\OtraUser\frontoffice\services\UserService;
+use otra\user\bundles\OtraUser\frontoffice\services\UserService;
+use Exception;
 use otra\Controller;
 use otra\OtraException;
 use otra\Router;
@@ -13,7 +14,7 @@ use ReflectionException;
 /**
  * OTRA login action
  *
- * @package bundles\OtraUser\frontoffice\controllers\index
+ * @package OtraUser\bundles\OtraUser\frontoffice\controllers\index
  */
 class LoginCheckAction extends Controller
 {
@@ -24,6 +25,7 @@ class LoginCheckAction extends Controller
    * @param array $getParams
    *
    * @throws OtraException|ReflectionException
+   * @throws Exception
    */
   public function __construct(array $baseParams = [], array $getParams = [])
   {
@@ -42,6 +44,7 @@ class LoginCheckAction extends Controller
 
     if ($userInformation !== false)
     {
+      $_SESSION['sid'] = true; // Informs OTRA that a user is connected
       Session::init();
       Session::sets(
         [
@@ -51,7 +54,16 @@ class LoginCheckAction extends Controller
         ]
       );
       Session::toFile();
+
+      // Adding dynamic JavaScript files to the list of assets to add in the html output
+      self::js([
+        '/bundles/resources/js/spaCall',
+        '/bundles/resources/js/menu',
+        '/bundles/OtraUser/backoffice/resources/js/userLogout'
+      ]);
+
       echo json_encode([
+        'js' => self::getAjaxJS(),
         'success' => true,
         'html' => (Router::get('users', $userInformation, true, true))->response
       ]);

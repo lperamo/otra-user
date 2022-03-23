@@ -4,6 +4,7 @@ declare(strict_types=1);
  * @var array $users
  * @var array $roles
  */
+
 ?>
 <table class="table suffix">
   <thead class="table-header">
@@ -12,9 +13,9 @@ declare(strict_types=1);
       foreach(array_keys($users[0]) as &$userKey)
       {
         if ($userKey === 'mask')
-          $userKey = 'role';
+          $userKey = 'Role';
 
-      ?><th><?= $userKey ?></th><?php
+      ?><th><?= ucfirst(str_replace('_', ' ', $userKey)) ?></th><?php
       }
       unset($userKey);
       ?>
@@ -42,9 +43,9 @@ declare(strict_types=1);
             foreach ($roles as $roleKey => $role)
             {
               $lcFirstOption = $user['id'] . '-' . lcfirst($role);
-              ?>
-              <input type="radio" role="menuitem" id="chk-<?= $lcFirstOption ?>-option" name="<?= $user['id'] ?>-select-radio"
-                     class="select select-item--activator" value="<?= $role ?>"<?php
+              ?><input type="radio" role="menuitem" id="chk-<?= $lcFirstOption ?>-option"
+                       name="<?= $user['id'] ?>-select-radio"
+                       class="select select-item--activator" value="<?= $role ?>"<?php
               if ($roleKey === array_key_first($roles))
                 echo ' checked';
               ?>/>

@@ -1,0 +1,30 @@
+$themes: (
+  'light': (
+    // ?
+    //'select--container--background-image' : none,
+    //'select--container--background-color' : #eee,
+    //'select--container--box-shadow' : .1rem .2rem .4rem #aaa,
+    // select component
+    'select--list--background-color' : #eee,
+    'select--list--background-image' : #eee,
+    'select--list--box-shadow' : .1rem .2rem .4rem #aaa,
+    'select--value--background-image' : linear-gradient(45deg, #9c3137 30%, #9c3137),
+    'select--value--box-shadow' : .1rem .2rem .2rem #666,
+    'select--value--color' : #eee,
+    'select--item--hover--background-image' : linear-gradient(45deg, #faa, #aaf),
+  ),
+  'dark': (
+    // ?
+    //'select--container--background-image' : none,
+    //'select--container--background-color' : #333,
+    //'select--container--box-shadow' : .1rem .2rem .4rem #aaa,
+    // select component
+    'select--list--background-color' : #eee,
+    'select--list--background-image' : none,
+    'select--list--box-shadow' : .1rem .2rem .4rem #aaa,
+    'select--value--background-image' : radial-gradient(circle, transparent 1%, #76acd1 1%),
+    'select--value--box-shadow' : .1rem .2rem .2rem #666,
+    'select--value--color' : #eee,
+    'select--item--hover--background-image' : linear-gradient(45deg, #76acd1, #758ed1 70%),
+  )
+);

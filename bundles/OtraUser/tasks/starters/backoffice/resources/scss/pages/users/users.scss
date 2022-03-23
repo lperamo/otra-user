@@ -1,0 +1,38 @@
+///
+/// @group Users
+/// @since 1.0
+/// @author Lionel Péramo
+///
+
+// SASS module
+@use 'sass:map';
+
+// Loading EcoComposer themes
+@use 'bundles/resources/scss/configuration/components/themes/menu' as menuThemes;
+@use 'bundles/resources/scss/configuration/components/themes/select' as selectThemes;
+@use 'bundles/resources/scss/configuration/components/themes/styledButtons' as styledButtonsThemes;
+
+// loading OtraUser themes configuration
+@use 'configuration/themes' as otraUserTheme;
+
+// loading EcoComposer components
+@use 'scss/components/styledButtons/ripple';
+@use 'scss/components/theming/theming';
+
+// loading OtraUser partials
+@use 'partials/users';
+
+$themes: theming.merge-themes(
+  (
+    otraUserTheme.$themes,
+    menuThemes.$themes,
+    selectThemes.$themes,
+    styledButtonsThemes.$themes,
+  )
+);
+
+@include theming.init-themes($themes, 'flexContainer' 'menu' 'ripple' 'select' 'table');
+@include ripple.create(
+  ('themes' : $themes)
+);
+@include theming.global-mass-theme();

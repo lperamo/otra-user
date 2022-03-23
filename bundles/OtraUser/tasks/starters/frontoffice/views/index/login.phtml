@@ -1,0 +1,9 @@
+<?php
+declare(strict_types=1);
+namespace genosyCms\bundles\GenosyCms\backoffice\views\index;
+
+use const otra\cache\php\BASE_PATH;
+use function otra\cache\php\block;
+
+require BASE_PATH . 'vendor/otra/user/bundles/OtraUser/frontoffice/views/index/login.phtml';
+block('bodyFlexContainer', 'flex-container suffix-login');

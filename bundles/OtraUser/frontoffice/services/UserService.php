@@ -1,12 +1,16 @@
 <?php
 declare(strict_types=1);
-namespace bundles\OtraUser\frontoffice\services;
+namespace otra\user\bundles\OtraUser\frontoffice\services;
 
 use otra\bdd\Sql;
 use otra\OtraException;
 
 class UserService
 {
+  const
+    TABLE_USER = 'user',
+    TABLE_ROLE = 'role';
+
   /**
    * @throws OtraException
    */
@@ -14,8 +18,8 @@ class UserService
   {
     $db = Sql::getDb();
     $query = 'SELECT u.id, u.pwd, r.mask
-      FROM user u
-      JOIN role r on r.id = u.fk_id_role
+      FROM `' . static::TABLE_USER . '` u
+      JOIN `' . static::TABLE_ROLE . '` r on r.id = u.fk_id_role
       WHERE u.pseudo = :login
         OR u.mail = :login';
 
@@ -24,6 +28,9 @@ class UserService
       ':login' => $login
     ]))
       throw new OtraException('Cannot bind parameters to the query<br>' . $query);
+
+    if ($statement->rowCount() === 0)
+      return false;
 
     $result = $db->fetchAssoc($statement);
     $db->freeResult($statement);

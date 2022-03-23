@@ -1,4 +1,19 @@
-(async function(document : Document, window: Window, body: HTMLElement)
+interface IScript {
+  src: string,
+  nonce: string,
+}
+
+interface ILoginFormResponse {
+  html: string,
+  js: IScript[],
+  success: boolean
+}
+
+window['LoginForm'] = (async (document : Document, window: Window, body: HTMLElement)
+  : Promise<{
+  addListeners: () => Promise<void>,
+  init: () => Promise<void>
+}> =>
 {
   'use strict';
 
@@ -16,12 +31,12 @@
       credentials : 'same-origin'
     },
     loginTitle = 'Login',
-    usersManagementTitle = 'Users management',
+    usersManagementTitle = 'Backoffice - Users management',
     logIn = async function logIn(mouseEvent : MouseEvent) : Promise<false>
     {
       mouseEvent.preventDefault();
 
-      if (!this.reportValidity())
+      if (!$form.reportValidity())
         return false;
 
       const
@@ -32,7 +47,7 @@
       const
         response : Response = await fetch(
           window['JS_ROUTING'].loginCheck.chunks[CHUNKS_URL],
-      {
+          {
             ...basicPostInit,
             ...{
               body : formData,
@@ -40,7 +55,7 @@
             }
           }
         ),
-        responseData = await response.json();
+        responseData : ILoginFormResponse = await response.json();
 
       if (response.ok === false)
       {
@@ -54,8 +69,7 @@
           $errorMessage.classList.toggle('error-message--hidden', true);
 
           body.innerHTML = responseData.html;
-          body.classList.remove('login-page');
-          body.classList.add('users-page');
+          document.documentElement.dataset.page = 'users-page';
           window.history.pushState(
             {
               requestInfo : window['JS_ROUTING'].users.chunks[CHUNKS_URL],
@@ -71,6 +85,18 @@
 
           // Title is not implemented in most browsers as it is not standard, so we must set it explicitly
           document.title = usersManagementTitle;
+
+          body.dispatchEvent(new CustomEvent('loginEvent'));
+          body.classList.remove('suffix-login');
+          body.classList.add('suffix-col');
+
+          for (const script of responseData.js)
+          {
+            const newScript = document.createElement('script');
+            newScript.src = script.src;
+            newScript.nonce = script.nonce;
+            document.head.appendChild(newScript);
+          }
         } else
         {
           // Adds the error message if it is not already there
@@ -113,10 +139,17 @@
       return false;
     },
 
-    pageReady = async function pageReady() : Promise<void>
+    addListeners = async function addListeners() : Promise<void>
+    {
+      $form = <HTMLFormElement> document.getElementsByClassName('login-box')[0];
+      $form.addEventListener('submit', logIn);
+      window.addEventListener('popstate', onPopState);
+    },
+
+    init = async function init() : Promise<void>
     {
       window.history.replaceState(
-  {
+        {
           requestInfo : window['JS_ROUTING'].login.chunks[CHUNKS_URL],
           requestInit : {
             ...basicPostInit,
@@ -128,12 +161,11 @@
         window['JS_ROUTING'].login.chunks[CHUNKS_URL]
       );
       $errorMessage = document.querySelector('.error-message');
-      $form = <HTMLFormElement> document.getElementsByClassName('login-box')[0];
-      $form.addEventListener('submit', logIn);
-      window.addEventListener('popstate', onPopState);
+      await addListeners();
     };
 
-  'loading' !== document.readyState
-    ? await pageReady()
-    : document.addEventListener('DOMContentLoaded', pageReady);
+  return {
+    addListeners,
+    init
+  };
 })(document, window, document.body);

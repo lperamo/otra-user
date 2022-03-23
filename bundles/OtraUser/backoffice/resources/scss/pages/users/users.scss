@@ -4,15 +4,30 @@
 /// @author Lionel Péramo
 ///
 
-// loading configuration
-@use '../../../../../resources/scss/configuration/themes' as *;
+// loading OtraUser themes configuration
+@use 'configuration/themes' as *;
 
-// loading components
-@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/theming/theming';
-@use '../../../../../../../vendor/ecocomposer/ecocomposer/components/styledButtons/ripple';
+// Loading EcoComposer themes
+@use 'bundles/resources/scss/configuration/components/themes/select' as selectThemes;
+@use 'bundles/resources/scss/configuration/components/themes/styledButtons' as styledButtonsThemes;
+@use 'bundles/resources/scss/configuration/components/themes/table' as tableThemes;
 
-// loading partials
-@use '../../partials/users';
+// loading EcoComposer components
+@use 'scss/components/styledButtons/ripple';
+@use 'scss/components/theming/theming';
+
+// loading OtraUser partials
+@use 'partials/users';
+
+// Setting up EcoComposer components
+$themes : theming.merge-themes(
+  (
+    $themes,
+    selectThemes.$themes,
+    styledButtonsThemes.$themes,
+    tableThemes.$themes
+  )
+);
 
 @include theming.init-themes($themes);
 @include ripple.create(

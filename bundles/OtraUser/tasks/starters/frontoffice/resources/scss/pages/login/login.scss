@@ -1,0 +1,61 @@
+// loading OtraUser themes configuration
+@use 'configuration/themes' as *;
+
+// loading OtraUser components
+@use 'components/login/login';
+
+// loading EcoComposer components
+@use 'scss/components/flexContainer/flexContainer';
+@use 'scss/components/font/font';
+@use 'scss/components/labelAndField/labelAndField';
+@use 'scss/components/styledButtons/ripple';
+@use 'scss/components/theming/theming';
+
+// configuring components
+@include theming.init-themes($themes);
+@include flexContainer.init();
+@include flexContainer.create(
+  (
+    'align-items' : center,
+    'flex-direction' : column,
+    'height' : null,
+    'justify-content' : center,
+    'suffix' : '-login'
+  )
+);
+@include flexContainer.create(
+  (
+    'flex-direction' : column,
+    'height' : null,
+    'justify-content' : center,
+    'suffix' : '-2',
+    'width' : auto
+  )
+);
+@include font.create(
+  (
+    'icons' : ('bust-in-silhouette', 'key')
+  )
+);
+@include labelAndField.init();
+@include labelAndField.create(
+  (
+    'label-width' : 18rem,
+    'label--margin-bottom' : 1rem,
+    'position' : 'vertical'
+  )
+);
+@include ripple.create(
+  (
+    'border-radius' : 5px,
+    'themes' : $themes,
+  )
+);
+@include login.init();
+@include login.create(
+  (
+    'position' : 'vertical',
+    'themes' : $themes
+  )
+);
+@include theming.global-mass-theme();

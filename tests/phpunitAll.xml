@@ -24,8 +24,17 @@
     </report>
   </coverage>
   <testsuites>
-    <testsuite name="Table creation task">
-      <file>bundles/OtraUser/tasks/otraUserInit/OtraUserInitTest.php</file>
+    <testsuite name="Back office">
+      <directory>bundles/OtraUser/backoffice</directory>
+    </testsuite>
+    <testsuite name="Front office">
+      <directory>bundles/OtraUser/frontoffice</directory>
+    </testsuite>
+    <testsuite name="otraUserInitArchitecture task">
+      <directory>bundles/OtraUser/tasks/otraUserInitArchitecture</directory>
+    </testsuite>
+    <testsuite name="otraUserInitDatabase task">
+      <directory>bundles/OtraUser/tasks/otraUserInitDatabase</directory>
     </testsuite>
   </testsuites>
   <logging>

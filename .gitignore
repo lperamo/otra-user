@@ -30,3 +30,5 @@ composer.phar
 .eslintrc.json
 .stylelintrc.json
 tests/.phpunit.result.cache
+tests/report.xml
+bundles/config

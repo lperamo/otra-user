@@ -8,51 +8,17 @@ $themes: (
     'login-form--box-shadow' : "2rem 2rem 6rem #ccc, -2rem -2rem 6rem #eee",
     'login-form--color' : #333,
     'login-form--error-message--color' : #e33,
+    'login-form--title-color' : #fff,
     'main--background-color' : #f0f0f0,
     'users--background-color' : #f0f0f0,
-    // table
-    'table--border' : 1px solid #333,
-    'table--td--border' : 1px solid #333,
-    'table--th--border' : 1px solid #333,
-    // Select
-    'select--container--background-image' : none,
-    'select--container--background-color' : #eee,
-    'select--container--box-shadow' : .1rem .2rem .4rem #aaa,
-    'select--value--background-image' : linear-gradient(45deg, #9c3137 30%, #9c3137),
-    'select--value--box-shadow' : .1rem .2rem .2rem #666,
-    'select--value--color' : #eee,
-    'select--item--hover--background-image' : linear-gradient(45deg, #faa, #aaf),
-    // styled buttons
-    'ripple--color' : #eee,
-    'ripple--color-2' : #eee, // for modal and calendar components
-    'ripple--active--background-color' : lighten($-theme--light--ripple--background-color, 10),
-    'ripple--hover--background-color' : $-theme--light--ripple--background-color,
-    'ripple--background-color' : darken($-theme--light--ripple--background-color, 10)
   ),
   'dark': (
     'login-form--background-color' : #333,
     'login-form--box-shadow' : "2rem 2rem 6rem #000000b3, -2rem -2rem 6rem #3a3a3ab3",
     'login-form--color' : #eee,
     'login-form--error-message--color' : #e33,
+    'login-form--title-color' : #fff,
     'main--background-color' : #222,
     'users--background-color' : #222,
-    // table
-    'table--border' : 1px solid #eee,
-    'table--td--border' : 1px solid #eee,
-    'table--th--border' : 1px solid #eee,
-    // select
-    'select--container--background-image' : none,
-    'select--container--background-color' : #333,
-    'select--container--box-shadow' : .1rem .2rem .4rem #aaa,
-    'select--value--background-image' : radial-gradient(circle, transparent 1%, #76acd1 1%),
-    'select--value--box-shadow' : .1rem .2rem .2rem #666,
-    'select--value--color' : #eee,
-    'select--item--hover--background-image' : linear-gradient(45deg, #76acd1, #758ed1 70%),
-    // styled buttons
-    'ripple--color' : #eee,
-    'ripple--color--2' : #eee, // for modal and calendar components
-    'ripple--active--background-color' : lighten($-theme--dark--ripple--background-color, 10),
-    'ripple--hover--background-color' : $-theme--dark--ripple--background-color,
-    'ripple--background-color' : darken($-theme--dark--ripple--background-color, 10)
   )
 );

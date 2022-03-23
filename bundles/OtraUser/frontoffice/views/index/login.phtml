@@ -1,16 +1,23 @@
 <?php
 declare(strict_types=1);
-namespace otraUser\bundles\OtraUser\frontend\views\index;
+namespace OtraUser\bundles\OtraUser\frontend\views\index;
 use const otra\cache\php\BASE_PATH;
 use function otra\cache\php\{block, endblock};
 
 require BASE_PATH . 'bundles/OtraUser/views/layout.phtml';
-
-block('title', 'Login');
-block('body');
+const LOGIN_TITLE = 'Login';
+block('title', LOGIN_TITLE);
+block('meta-description', LOGIN_TITLE);
+block('application-name', LOGIN_TITLE);
+block('og-site-name', LOGIN_TITLE);
 block('page', 'login-page');
+block('body');
+
+
+if (!isset($_SESSION['sid']))
+{
 ?>
-<form class="login-box flex-container-2 justify-content--center direction-column" method="POST" enctype="application/x-www-form-urlencoded">
+<form class="login-box flex-container suffix-2" method="POST" enctype="application/x-www-form-urlencoded">
   <h1 class="otra-login--title">Login</h1>
   <div class="field-group">
     <label for="otra-login" class="label ec-icon ec-bust-in-silhouette required login-box--label">Username or email</label>
@@ -34,3 +41,7 @@ block('page', 'login-page');
   <input type="submit" class="ripple login-box--submit" value="Log in"/>
 </form>
 <?php endblock();
+} else
+{
+  ?>You are already logged!<br><?php
+}

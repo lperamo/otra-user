@@ -1,5 +1,9 @@
+// SASS module
+@use 'sass:map';
+
 // loading OtraUser themes configuration
 @use 'configuration/themes' as *;
+@use 'bundles/resources/scss/configuration/components/themes/styledButtons' as styledButtonsThemes;
 
 // loading OtraUser components
 @use 'components/login/login';
@@ -12,6 +16,8 @@
 @use 'scss/components/theming/theming';
 
 // configuring components
+$themes: map.deep-merge($themes, styledButtonsThemes.$themes);
+
 @include theming.init-themes($themes);
 @include flexContainer.init();
 @include flexContainer.create(

@@ -1,0 +1,19 @@
+///
+/// @group Users
+/// @since 1.0
+/// @author Lionel Péramo
+///
+
+// loading OtraUser themes configuration
+@use 'configuration/themes' as *;
+
+// loading EcoComposer components
+@use 'scss/components/theming/theming';
+
+// loading OtraUser components
+@use 'components/users/users';
+
+@include users.init();
+@include users.create(
+  ('themes' : $themes)
+);

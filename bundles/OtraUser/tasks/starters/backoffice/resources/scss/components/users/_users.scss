@@ -1,0 +1,94 @@
+///
+/// @group Users
+/// @since 1.0
+/// @author Lionel Péramo
+///
+
+// loading SASS modules
+@use 'sass:map';
+
+// Loading EcoComposer themes
+@use 'bundles/resources/scss/configuration/components/themes/select' as selectThemes;
+@use 'bundles/resources/scss/configuration/components/themes/table' as tableThemes;
+
+// loading EcoComposer components
+@use 'scss/components/select/select';
+@use 'scss/components/theming/theming';
+@use 'scss/components/table/table';
+
+$-defaults : (
+  'themes' : (
+    'light': (
+      'default--login-form--background-color' : #eee,
+    ),
+    'dark': (
+      'default--login-form--background-color' : #333,
+    )
+  )
+);
+
+///
+/// Main mixin that initializes the users management page component.
+///
+/// @access public
+///
+@mixin init() {
+  :root {
+    font-size : 10px;
+  }
+
+  th,
+  td {
+    font-size : 1.6rem;
+  }
+}
+
+///
+/// Main mixin that creates login pages.
+///
+/// @access public
+/// @param  {array} $-options ()
+///
+@mixin create($-options : ()) {
+  $-themeUsed: map.has-key($-options, 'themes');
+  $-options : map.merge($-defaults, $-options);
+  $-themes : theming.merge-themes(
+    (
+      map.get($-options, 'themes'),
+      selectThemes.$themes,
+      tableThemes.$themes
+    )
+  );
+
+  $-themes: theming.merge-themes(
+    (
+      $-themes,
+      selectThemes.$themes,
+      tableThemes.$themes
+    )
+  );
+
+  @include select.init();
+  @include select.create(
+    (
+      'select--container--background-color' : null,
+      'select--container--background-image' : null,
+      'themes' : $-themes
+    )
+  );
+  @include table.init();
+  @include table.create(
+    (
+      'desktop--th-padding' : 1rem,
+      'mobile--th-padding' : 1rem,
+      'desktop--td-padding' : 1rem,
+      'mobile--td-padding' : 1rem,
+      'table-border' : null,
+      'themes' : $-themes
+    )
+  );
+
+  body.users-page {
+    @include theming.to-theme((#{&} : ('background-color', 'users--background-color')));
+  }
+}

@@ -1,0 +1,24 @@
+$-theme--light--ripple--background-color: #c23e45;
+$-theme--dark--ripple--background-color: #9cc3de;
+
+$themes: (
+  'font': "'Arial', serif",
+  'light': (
+    'login-form--background-color' : #eee,
+    'login-form--box-shadow' : "2rem 2rem 6rem #ccc, -2rem -2rem 6rem #eee",
+    'login-form--color' : #333,
+    'login-form--error-message--color' : #e33,
+    'login-form--title-color' : #fff,
+    'main--background-color' : #f0f0f0,
+    'users--background-color' : #f0f0f0,
+  ),
+  'dark': (
+    'login-form--background-color' : #333,
+    'login-form--box-shadow' : "2rem 2rem 6rem #000000b3, -2rem -2rem 6rem #3a3a3ab3",
+    'login-form--color' : #eee,
+    'login-form--error-message--color' : #e33,
+    'login-form--title-color' : #fff,
+    'main--background-color' : #222,
+    'users--background-color' : #222,
+  )
+);

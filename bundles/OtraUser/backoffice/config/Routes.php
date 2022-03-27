@@ -1,6 +1,18 @@
 <?php
 declare(strict_types=1);
 return [
+  'addUser' => [
+    'chunks' => ['/admin/users/add', 'OtraUser', 'backoffice', 'index', 'AddUserAction'],
+    'prefix' => OTRA_USER_PREFIX
+  ],
+  'editUser' => [
+    'chunks' => ['/admin/users/edit', 'OtraUser', 'backoffice', 'index', 'EditUserAction'],
+    'prefix' => OTRA_USER_PREFIX
+  ],
+  'removeUser' => [
+    'chunks' => ['/admin/users/remove/{userId}', 'OtraUser', 'backoffice', 'index', 'RemoveUserAction'],
+    'prefix' => OTRA_USER_PREFIX
+  ],
   'users' => [
     'chunks' => ['/admin/users', 'OtraUser', 'backoffice', 'index', 'UsersAction'],
     'prefix' => OTRA_USER_PREFIX,

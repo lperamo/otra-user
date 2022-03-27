@@ -7,18 +7,9 @@ return [
     'prefix' => OTRA_USER_PREFIX,
     'resources' => [
       'template' => true,
-      'module_css' => ['pages/login/login'],
-      'module_js' => ['loginForm']
-    ]
-  ],
-  'notAjaxLogin' => [
-    'chunks' => ['/notAjax/login', 'OtraUser', 'frontoffice', 'index', 'NotAjaxLoginFormAction'],
-    'prefix' => OTRA_USER_PREFIX,
-    'resources' => [
-      'template' => true,
-      'module_css' => ['pages/login/login'],
       'app_js' => ['jsRouting'],
-      'module_js' => ['loginForm']
+      'module_css' => ['pages/login/login'],
+      'module_js' => ['loginForm', 'userLogin']
     ]
   ],
   'loginCheck' => [

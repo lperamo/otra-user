@@ -3,30 +3,50 @@ declare(strict_types=1);
 
 namespace bundles\OtraUser\backoffice\controllers\index;
 
-use otra\{OtraException, Router, Session};
+use otra\{console\TasksManager, OtraException, Router, Session};
 use phpunit\framework\TestCase;
 use ReflectionClass;
 use ReflectionException;
+use const otra\bin\CACHE_PHP_INIT_PATH;
 use const otra\cache\php\{APP_ENV, BASE_PATH, CORE_PATH, PROD};
+use function otra\console\database\sqlCreateDatabase\sqlCreateDatabase;
+use function otra\console\database\sqlCreateFixtures\sqlCreateFixtures;
 use function otra\tools\files\returnLegiblePath2;
 use function tests\tools\normalizingHtmlResponse;
 
 /**
- * @runTestsInSeparateProcesses
+ * It fixes issues like when AllConfig is not loaded while it should be
+ * @preserveGlobalState disabled
  */
 class NotAjaxUsersActionTest extends TestCase
 {
-  // It fixes issues like when AllConfig is not loaded while it should be
-  protected $preserveGlobalState = FALSE;
-  private const USERS_ACTION_EXAMPLE_TEMPLATE = BASE_PATH . 'tests/examples/usersAction.phtml';
+  private const
+    DATABASE_NAME = 'otra_user',
+    OTRA_BINARY = 'bin/otra.php',
+    TASK_SQL_CREATE_DATABASE = 'sqlCreateDatabase',
+    TASK_SQL_CREATE_FIXTURES = 'sqlCreateFixtures',
+    TASK_END_FILE_NAME = 'Task.php',
+    USERS_ACTION_EXAMPLE_TEMPLATE = BASE_PATH . 'tests/examples/usersAction.phtml';
 
-  protected function setUp(): void
+  /**
+   * @throws OtraException
+   */
+  public static function setUpBeforeClass(): void
   {
-    parent::setUp();
+    parent::setUpBeforeClass();
     $_SERVER[APP_ENV] = PROD;
     $_SERVER['REMOTE_ADDR'] = '::1';
     $_SERVER['HTTPS'] = 'on';
     $_SERVER['HTTP_HOST'] = 'dev.otra-user.tech';
+    $tasksClassMap = require CACHE_PHP_INIT_PATH . 'tasksClassMap.php';
+    require_once BASE_PATH . 'tests/config/AllConfig.php';
+    require_once $tasksClassMap[self::TASK_SQL_CREATE_DATABASE][TasksManager::TASK_CLASS_MAP_TASK_PATH] . '/' .
+      self::TASK_SQL_CREATE_DATABASE . self::TASK_END_FILE_NAME;
+    sqlCreateDatabase([self::OTRA_BINARY, self::TASK_SQL_CREATE_DATABASE, self::DATABASE_NAME, 'true']);
+
+    require_once $tasksClassMap[self::TASK_SQL_CREATE_FIXTURES][TasksManager::TASK_CLASS_MAP_TASK_PATH] . '/' .
+      self::TASK_SQL_CREATE_FIXTURES . self::TASK_END_FILE_NAME;
+    sqlCreateFixtures([self::OTRA_BINARY, self::TASK_SQL_CREATE_FIXTURES, self::DATABASE_NAME, '2']);
   }
 
   /**
@@ -47,13 +67,6 @@ class NotAjaxUsersActionTest extends TestCase
   public function testNotAjaxSuccess() : void
   {
     // context
-    session_name('__Secure-LPSESSID');
-    session_start([
-      'cookie_secure' => true,
-      'cookie_httponly' => true,
-      'cookie_samesite' => 'strict'
-    ]);
-    require BASE_PATH . 'tests/config/AllConfig.php';
     Session::init();
     Session::sets(
       [
@@ -81,19 +94,12 @@ class NotAjaxUsersActionTest extends TestCase
   }
 
   /**
-   * @throws OtraException
    * @throws ReflectionException
+   * @throws OtraException
    */
   public function testNotAjaxUserWrongRights() : void
   {
     // context
-    require BASE_PATH . 'tests/config/AllConfig.php';
-    session_name('__Secure-LPSESSID');
-    session_start([
-      'cookie_secure' => true,
-      'cookie_httponly' => true,
-      'cookie_samesite' => 'strict'
-    ]);
     Session::init();
     Session::sets(
       [
@@ -114,11 +120,12 @@ class NotAjaxUsersActionTest extends TestCase
     );
   }
 
+  /**
+   * @runInSeparateProcess
+   * @return void
+   */
   public function testNotAjaxUserNotConnected() : void
   {
-    // context
-    require BASE_PATH . 'tests/config/AllConfig.php';
-
     // testing
     $this->expectException(OtraException::class);
 

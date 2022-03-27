@@ -10,8 +10,6 @@ use otra\{config\Routes, Controller, OtraException, Router};
  */
 class LoginFormAction extends Controller
 {
-  public string $response;
-
   /**
    * @param array $baseParams
    * @param array $getParams
@@ -22,11 +20,12 @@ class LoginFormAction extends Controller
   {
     parent::__construct($baseParams, $getParams);
 
-    // If it is an AJAX request (most common case as we must use an SPA)
-    if (isset($_SERVER['HTTP_X_REQUESTED_WITH']))
-    {
-      $this->response = $this->renderView('login.phtml', [], true);
+    $ajax = isset($_SERVER['HTTP_X_REQUESTED_WITH']);
+    $this->response = $this->renderView('login.phtml', [], $ajax);
 
+    // If it is an AJAX request (most common case as we must use an SPA)
+    if ($ajax)
+    {
       // If the actual url is the same that the used route, then we are using the JavaScript API History
       if ($_SERVER['REQUEST_URI'] === Routes::$allRoutes[$this->route]['chunks'][Routes::ROUTES_CHUNKS_URL])
         echo json_encode(
@@ -37,8 +36,6 @@ class LoginFormAction extends Controller
         );
     }
     else
-    {
-      $this->response = Router::get('notAjaxLogin', [], true, true)->response;
-    }
+      echo $this->response;
   }
 }

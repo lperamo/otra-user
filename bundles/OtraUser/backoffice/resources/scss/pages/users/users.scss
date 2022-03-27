@@ -4,13 +4,13 @@
 /// @author Lionel Péramo
 ///
 
-// loading OtraUser themes configuration
-@use 'configuration/themes' as *;
-
 // Loading EcoComposer themes
 @use 'bundles/resources/scss/configuration/components/themes/select' as selectThemes;
 @use 'bundles/resources/scss/configuration/components/themes/styledButtons' as styledButtonsThemes;
 @use 'bundles/resources/scss/configuration/components/themes/table' as tableThemes;
+
+// loading OtraUser themes configuration
+@use 'configuration/themes' as otraUserTheme;
 
 // loading EcoComposer components
 @use 'scss/components/styledButtons/ripple';
@@ -22,14 +22,14 @@
 // Setting up EcoComposer components
 $themes : theming.merge-themes(
   (
-    $themes,
+    otraUserTheme.$themes,
     selectThemes.$themes,
     styledButtonsThemes.$themes,
     tableThemes.$themes
   )
 );
 
-@include theming.init-themes($themes);
+@include theming.init-themes($themes, 'flexContainer' 'menu' 'ripple' 'select' 'table');
 @include ripple.create(
   ('themes' : $themes)
 );

@@ -31,17 +31,6 @@ $-defaults : (
 /// Main mixin that initializes the users management page component.
 ///
 /// @access public
-///
-@mixin init() {
-  :root {
-    font-size : 10px;
-  }
-
-  th,
-  td {
-    font-size : 1.6rem;
-  }
-}
 
 ///
 /// Main mixin that creates login pages.
@@ -79,10 +68,10 @@ $-defaults : (
   @include table.init();
   @include table.create(
     (
-      'desktop--th-padding' : 1rem,
-      'mobile--th-padding' : 1rem,
-      'desktop--td-padding' : 1rem,
-      'mobile--td-padding' : 1rem,
+      'desktop--th-padding' : 1rem * theming.$font-size,
+      'mobile--th-padding' : 1rem * theming.$font-size,
+      'desktop--td-padding' : 1rem * theming.$font-size,
+      'mobile--td-padding' : 1rem * theming.$font-size,
       'table-border' : null,
       'themes' : $-themes
     )

@@ -46,8 +46,8 @@ $themes: map.deep-merge($themes, styledButtonsThemes.$themes);
 @include labelAndField.init();
 @include labelAndField.create(
   (
-    'label-width' : 18rem,
-    'label--margin-bottom' : 1rem,
+    'label-width' : 18rem * theming.$font-size,
+    'label--margin-bottom' : 1rem * theming.$font-size,
     'position' : 'vertical'
   )
 );

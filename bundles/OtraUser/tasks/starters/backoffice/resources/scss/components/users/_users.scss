@@ -33,10 +33,6 @@ $-defaults : (
 /// @access public
 ///
 @mixin init() {
-  :root {
-    font-size : 10px;
-  }
-
   th,
   td {
     font-size : 1.6rem;

@@ -1,8 +1,11 @@
+// load EcoComposer theming module
+@use 'scss/components/theming/theming';
+
 $-theme--light--ripple--background-color: #c23e45;
 $-theme--dark--ripple--background-color: #9cc3de;
 
 $themes: (
-  'font': "'Arial', serif",
+  'font': theming.$font-family,
   'light': (
     'login-form--background-color' : #eee,
     'login-form--box-shadow' : "2rem 2rem 6rem #ccc, -2rem -2rem 6rem #eee",

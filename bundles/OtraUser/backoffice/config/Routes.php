@@ -17,9 +17,8 @@ return [
     'chunks' => ['/admin/users', 'OtraUser', 'backoffice', 'index', 'UsersAction'],
     'prefix' => OTRA_USER_PREFIX,
     'resources' => [
-      'module_css' => ['pages/users/ajaxUsers'],
-      'module_js' => ['userLogout'],
-      'template' => true
+//      'module_css' => ['pages/users/ajaxUsers'],
+      'module_js' => ['userLogout']
     ]
   ],
   'notAjaxUsers' => [
@@ -27,9 +26,8 @@ return [
     'prefix' => OTRA_USER_PREFIX,
     'resources' => [
       'module_css' => ['pages/users/users'],
-      'app_js' => ['jsRouting'],
-      'module_js' => ['userLogout'],
-      'template' => true
+      'app_js' => ['jsRouting', 'spaCall'],
+      'module_js' => ['userLogout']
     ]
   ]
 ];

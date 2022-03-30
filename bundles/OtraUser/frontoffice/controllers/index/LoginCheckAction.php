@@ -55,18 +55,7 @@ class LoginCheckAction extends Controller
       );
       Session::toFile();
 
-      // Adding dynamic JavaScript files to the list of assets to add in the html output
-      self::js([
-        '/bundles/resources/js/spaCall',
-        '/bundles/resources/js/menu',
-        '/bundles/OtraUser/backoffice/resources/js/userLogout'
-      ]);
-
-      echo json_encode([
-        'js' => self::getAjaxJS(),
-        'success' => true,
-        'html' => (Router::get('users', $userInformation, true, true))->response
-      ]);
+      echo (Router::get('users', $userInformation, true, true))->response;
     } else
     {
       echo json_encode([

@@ -13,7 +13,6 @@
 // loading OtraUser components
 @use 'components/users/users';
 
-@include users.init();
 @include users.create(
   ('themes' : $themes)
 );

@@ -1,0 +1,20 @@
+<?php
+declare(strict_types=1);
+namespace OtraUser\bundles\OtraUser\frontend\views\index\partials;
+use const otra\cache\php\CORE_PATH;
+use function otra\cache\php\{block, endblock};
+
+// may have been loaded by the layout if we directly accessed the users list page
+require_once CORE_PATH . 'templating/blocks.php';
+/**
+ * @var string $viewPath
+ */
+
+block('body');
+?>
+  <button type="button" class="ripple logout -logout">Log out</button>
+  <?php
+  block('ajaxRightSide');
+  require $viewPath . 'partials/users.phtml';
+  endblock();
+endblock();

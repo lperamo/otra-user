@@ -29,21 +29,16 @@ class RemoveUserActionTest extends TestCase
     TASK_SQL_CREATE_DATABASE = 'sqlCreateDatabase',
     TASK_SQL_CREATE_FIXTURES = 'sqlCreateFixtures';
 
-  protected function setUp(): void
-  {
-    parent::setUp();
-    $_SERVER[APP_ENV] = PROD;
-    $_SERVER['REMOTE_ADDR'] = '::1';
-    $_SERVER['HTTPS'] = 'on';
-    $_SERVER['HTTP_HOST'] = 'dev.otra-user.tech';
-  }
-
   /**
    * @throws OtraException
    */
   public static function setUpBeforeClass() : void
   {
-    $tasksClassMap = require CACHE_PHP_INIT_PATH . 'tasksClassMap.php';
+    $_SERVER[APP_ENV] = PROD;
+    $_SERVER['REMOTE_ADDR'] = '::1';
+    $_SERVER['HTTPS'] = 'on';
+    $_SERVER['HTTP_HOST'] = 'dev.otra-user.tech';
+    $tasksClassMap = require_once CACHE_PHP_INIT_PATH . 'tasksClassMap.php';
     require_once BASE_PATH . 'tests/config/AllConfig.php';
     require $tasksClassMap[self::TASK_SQL_CREATE_DATABASE][TasksManager::TASK_CLASS_MAP_TASK_PATH] . '/' .
       self::TASK_SQL_CREATE_DATABASE . self::TASK_END_FILE_NAME;
@@ -78,18 +73,27 @@ class RemoveUserActionTest extends TestCase
   /**
    * @throws OtraException
    * @throws ReflectionException
+   * @return void
    */
-  public function testRemove() : void
+  private static function initSession() : void
   {
-    // context
     session_name('__Secure-LPSESSID');
     session_start([
       'cookie_secure' => true,
       'cookie_httponly' => true,
       'cookie_samesite' => 'strict'
     ]);
-    require BASE_PATH . 'tests/config/AllConfig.php';
     Session::init();
+  }
+
+  /**
+   * @throws OtraException
+   * @throws ReflectionException
+   */
+  public function testRemove() : void
+  {
+    // context
+    self::initSession();
     Session::sets(
       [
         self::PARAMETER_USER_ID => 1,
@@ -124,14 +128,7 @@ class RemoveUserActionTest extends TestCase
   public function testWrongRights() : void
   {
     // context
-    require BASE_PATH . 'tests/config/AllConfig.php';
-    session_name('__Secure-LPSESSID');
-    session_start([
-      'cookie_secure' => true,
-      'cookie_httponly' => true,
-      'cookie_samesite' => 'strict'
-    ]);
-    Session::init();
+    self::initSession();
     Session::sets(
       [
         self::PARAMETER_USER_ID => 1,
@@ -153,9 +150,6 @@ class RemoveUserActionTest extends TestCase
 
   public function testNotAjaxUserNotConnected() : void
   {
-    // context
-    require BASE_PATH . 'tests/config/AllConfig.php';
-
     // testing
     $this->expectException(OtraException::class);
 

@@ -16,9 +16,8 @@ use function tests\tools\normalizingHtmlResponse;
 class LogoutActionTest extends TestCase
 {
   private const
-    AJAX_LOGIN_FORM_ACTION_EXAMPLE_TEMPLATE = BASE_PATH . 'tests/examples/ajaxLoginFormAction.phtml',
     LOGIN_FORM_ACTION_EXAMPLE_TEMPLATE = BASE_PATH . 'tests/examples/loginFormAction.phtml',
-    LABEL_JS = 'js';
+    FROM_LOGOUT_LOGIN_FORM_ACTION_EXAMPLE_TEMPLATE = BASE_PATH . 'tests/examples/fromLogoutLoginFormAction.phtml';
 
   // It fixes issues like when AllConfig is not loaded while it should be
   protected $preserveGlobalState = FALSE;
@@ -70,8 +69,20 @@ class LogoutActionTest extends TestCase
       []
     );
 
+    $response = json_decode(ob_get_clean(), true);
+
+    ob_start();
+    require self::FROM_LOGOUT_LOGIN_FORM_ACTION_EXAMPLE_TEMPLATE;
+    require BASE_PATH . 'tests/tools/normalizingHtmlResponse.php';
+    $expectedHtmlResponse = ob_get_clean();
+
     // testing
-   self::assertEquals('', ob_get_clean(), 'Checking that the output is empty.');
+    self::assertEquals(
+      $expectedHtmlResponse,
+      normalizingHtmlResponse($response['html']),
+      'Comparing template with ' . returnLegiblePath2(self::FROM_LOGOUT_LOGIN_FORM_ACTION_EXAMPLE_TEMPLATE)
+    );
+    self::assertEquals(true, $response['success']);
   }
 
   public function testNotAjax() : void

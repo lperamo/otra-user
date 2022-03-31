@@ -4,7 +4,6 @@ declare(strict_types=1);
  * @var array $users
  * @var array $roles
  */
-
 ?>
 <table class="table suffix">
   <thead class="table-header">
@@ -35,23 +34,25 @@ declare(strict_types=1);
           echo $userValue;
         else
         {?>
-          <button type="button" role="menu" class="select select-value">
-            <span class="select select-value--label"><?= $roles[$userValue] ?></span>
-            <span>&#x25bc;&#xfe0e;</span>
-          </button>
-          <div class="select select-container"><?php
-            foreach ($roles as $roleKey => $role)
-            {
-              $lcFirstOption = $user['id'] . '-' . lcfirst($role);
-              ?><input type="radio" role="menuitem" id="chk-<?= $lcFirstOption ?>-option"
-                       name="<?= $user['id'] ?>-select-radio"
-                       class="select select-item--activator" value="<?= $role ?>"<?php
-              if ($roleKey === array_key_first($roles))
-                echo ' checked';
-              ?>/>
-              <label for="chk-<?= $lcFirstOption ?>-option" class="select select-item--label"><?= $role ?></label><?php
-            }
-          ?></div><?php
+          <div class="select select-container">
+            <button type="button" role="menu" class="select select-value">
+              <span class="select select-value--label"><?= $roles[$userValue] ?></span>
+              <span>&#x25bc;&#xfe0e;</span>
+            </button>
+            <div class="select select-list"><?php
+              foreach ($roles as $roleKey => $role)
+              {
+                $lcFirstOption = $user['id'] . '-' . lcfirst($role);
+                ?><input type="radio" role="menuitem" id="chk-<?= $lcFirstOption ?>-option"
+                         name="<?= $user['id'] ?>-select-radio"
+                         class="select select-item--activator" value="<?= $role ?>"<?php
+                if ($roleKey === array_key_first($roles))
+                  echo ' checked';
+                ?>/>
+                <label for="chk-<?= $lcFirstOption ?>-option" class="select select-item--label"><?= $role ?></label><?php
+              }
+            ?></div>
+          </div><?php
         }
         ?>
         </td><?php

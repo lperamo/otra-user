@@ -18,6 +18,7 @@
 
 // loading OtraUser partials
 @use 'partials/users';
+@use 'partials/logout';
 
 // Setting up EcoComposer components
 $themes : theming.merge-themes(
@@ -30,7 +31,5 @@ $themes : theming.merge-themes(
 );
 
 @include theming.init-themes($themes, 'flexContainer' 'menu' 'ripple' 'select' 'table');
-@include ripple.create(
-  ('themes' : $themes)
-);
+@include ripple.create(('themes' : $themes));
 @include theming.global-mass-theme();

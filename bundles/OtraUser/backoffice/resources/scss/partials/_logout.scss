@@ -1,0 +1,7 @@
+// load EcoComposer theming module
+@use 'scss/components/theming/theming';
+
+// specific style
+.logout {
+  margin-bottom : 2rem * theming.$font-size;
+}

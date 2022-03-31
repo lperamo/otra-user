@@ -6,6 +6,11 @@ define(
   __NAMESPACE__ . '\\OTRA_USER_PATH',
   file_exists(BASE_PATH . 'vendor/otra/user/') ? BASE_PATH . 'vendor/otra/user/' : BASE_PATH
 );
+define(
+  __NAMESPACE__ . '\\OTRA_USER_URL_PATH',
+  file_exists(BASE_PATH . 'vendor/otra/user/') ? '/vendor/otra/user/' : '/'
+);
+
 AllConfig::$taskFolders[] = constant(__NAMESPACE__ . '\\OTRA_USER_PATH') . 'bundles/OtraUser/tasks/';
 // We use constant here as the BASE_PATH is different in each project where we use this bundle
 AllConfig::$sassLoadPaths = [

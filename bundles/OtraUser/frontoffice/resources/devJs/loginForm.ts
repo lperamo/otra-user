@@ -3,7 +3,14 @@ interface IScript {
   nonce: string,
 }
 
+interface IStyleSheet {
+  href: string,
+  media: string,
+  nonce: string,
+}
+
 interface ILoginFormResponse {
+  css: IStyleSheet[],
   html: string,
   js: IScript[],
   success: boolean
@@ -90,12 +97,22 @@ window['LoginForm'] = (async (document : Document, window: Window, body: HTMLEle
           body.classList.remove('suffix-login');
           body.classList.add('suffix-col');
 
-          for (const script of responseData.js)
+          // Unload CSS from the login page
+          const $loginCss : HTMLLinkElement =
+            document.querySelector('link[href="/bundles/OtraUser/frontoffice/resources/css/pages/login/login.css"]');
+
+          if ($loginCss !== null)
+              $loginCss.remove();
+
+          if (responseData.js !== undefined)
           {
-            const newScript = document.createElement('script');
-            newScript.src = script.src;
-            newScript.nonce = script.nonce;
-            document.head.appendChild(newScript);
+            for (const script of responseData.js)
+            {
+              const newScript = document.createElement('script');
+              newScript.src = script.src;
+              newScript.nonce = script.nonce;
+              document.head.appendChild(newScript);
+            }
           }
         } else
         {

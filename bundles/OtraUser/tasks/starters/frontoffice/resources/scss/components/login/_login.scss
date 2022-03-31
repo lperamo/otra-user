@@ -100,10 +100,6 @@ $-defaults : (
   $-suffix            : map.get($-options, 'suffix');
 
   @if ($-main-style) {
-    :root {
-      font-size : 10px;
-    }
-
     html,
     body {
       padding    : 0;

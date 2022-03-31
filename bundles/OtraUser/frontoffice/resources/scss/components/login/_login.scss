@@ -24,7 +24,8 @@ $-defaults : (
   'themes' : (
     'light': (
       'default--login-form--background-color' : #eee,
-      'default--login-form--box-shadow' : "2rem 2rem 6rem #ccc, -2rem -2rem 6rem #eee",
+      'default--login-form--box-shadow' :
+        '2rem * theming.$font-size 2rem * theming.$font-size 6rem * theming.$font-size #ccc, -2rem * theming.$font-size -2rem * theming.$font-size 6rem * theming.$font-size #eee',
       'default--login-form--color' : #333,
       'default--login-form--error-message--color' : #e33,
       'default--login-form--title-color' : #fff,
@@ -32,7 +33,8 @@ $-defaults : (
     ),
     'dark': (
       'default--login-form--background-color' : #333,
-      'default--login-form--box-shadow' : "2rem 2rem 6rem #000000b3, -2rem -2rem 6rem #3a3a3ab3",
+      'default--login-form--box-shadow' :
+        '2rem * theming.$font-size 2rem * theming.$font-size 6rem * theming.$font-size #000000b3, -2rem * theming.$font-size -2rem * theming.$font-size 6rem * theming.$font-size #3a3a3ab3',
       'default--login-form--color' : #eee,
       'default--login-form--error-message--color' : #e33,
       'default--login-form--title-color' : #fff,
@@ -48,8 +50,8 @@ $-defaults : (
 ///
 @mixin init() {
   .login-box {
-    border-radius : 1rem;
-    padding       : 2rem;
+    border-radius : 1rem * theming.$font-size;
+    padding       : 2rem * theming.$font-size;
 
     &--submit {
       display    : flex;
@@ -58,11 +60,15 @@ $-defaults : (
 
     @at-root .otra-login--title {
       // margins
-      margin-bottom : 3rem;
+      margin-bottom : 3rem * theming.$font-size;
 
       // text
       text-align : center;
     }
+  }
+
+  .field-group {
+    display        : flex;
   }
 
   .field-group--remember {
@@ -96,14 +102,10 @@ $-defaults : (
   $-font : unquote(map.get($-options, 'themes', 'font'));
 
   // classic variables
-  $-main-style        : map.get($-options, 'main-style');
-  $-suffix            : map.get($-options, 'suffix');
+  $-main-style : map.get($-options, 'main-style');
+  $-suffix     : map.get($-options, 'suffix');
 
   @if ($-main-style) {
-    :root {
-      font-size : 10px;
-    }
-
     html,
     body {
       padding    : 0;
@@ -133,8 +135,12 @@ $-defaults : (
       @include theming.to-theme((#{&} : ('box-shadow', $-login-form--box-shadow)));
     }
 
-    @if ($-login-form--color != null) {
-      @include theming.to-theme((#{&} : ('color', $-login-form--color)));
+    &--label {
+      @if ($-login-form--color != null) {
+        @include theming.to-theme((#{&} : ('color', $-login-form--color)));
+
+        margin-bottom : 1rem * theming.$font-size;
+      }
     }
   }
 
@@ -145,29 +151,34 @@ $-defaults : (
       @include theming.to-theme((#{&} : ('color', $-login-form--title-color)));
     }
 
-    filter      : drop-shadow(.2rem .2rem .3rem #aaa);
+    filter      : drop-shadow(.2rem * theming.$font-size .2rem * theming.$font-size .3rem * theming.$font-size #aaa);
     font-family : $-font;
-    text-shadow : 0 0 .3rem #aaa;
+    text-shadow : 0 0 .3rem * theming.$font-size #aaa;
   }
 
   .login-box--label,
   .login-box--submit,
   .error-message {
     font-family : $-font;
-    font-size   : 1.6rem;
+    font-size   : 1.6rem * theming.$font-size;
+  }
+
+  @if ($-position == 'vertical') {
+    .field-group:not(.field-group--remember) {
+      flex-direction : column;
+    }
   }
 
   .field-group--remember {
-    @if ($-position == 'horizontal') {
-      display : flex;
-    }
-
-    @else {
+    @if ($-position != 'horizontal') {
       flex-direction : row;
 
       & > .login-box--label {
-        margin-left   : .5rem;
-        margin-bottom : initial;
+        margin-left   : .5rem * theming.$font-size;
+
+        &:not(.error-message--hidden) {
+          margin-bottom : initial;
+        }
       }
     }
   }
@@ -178,7 +189,8 @@ $-defaults : (
     }
 
     &--hidden {
-      visibility : hidden;
+      margin-bottom : 0;
+      visibility    : hidden;
     }
   }
 }

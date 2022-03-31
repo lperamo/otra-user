@@ -14,6 +14,10 @@ $themes: (
     'login-form--title-color' : #fff,
     'main--background-color' : #f0f0f0,
     'users--background-color' : #f0f0f0,
+    'users--table--action-link--color' : #333,
+    'users--table--link--color' : #992600,
+    'users--tr-n--background-image' : linear-gradient(45deg, #cddada, #bfcfcf, #cddada),
+    'users--tr-n-plus-one--background-image' : linear-gradient(45deg, #dce5e5, #cddada, #dce5e5)
   ),
   'dark': (
     'login-form--background-color' : #333,
@@ -23,5 +27,9 @@ $themes: (
     'login-form--title-color' : #fff,
     'main--background-color' : #222,
     'users--background-color' : #222,
+    'users--table--action-link--color' : #ccc,
+    'users--table--link--color' : #ff8c66,
+    'users--tr-n--background-image' : linear-gradient(45deg, #273535, #324343, #273535),
+    'users--tr-n-plus-one--background-image' : linear-gradient(45deg, #324343, #3d5151, #324343)
   )
 );

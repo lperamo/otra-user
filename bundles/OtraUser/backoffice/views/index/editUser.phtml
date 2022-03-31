@@ -1,0 +1,18 @@
+<?php
+declare(strict_types=1);
+namespace OtraUser\bundles\OtraUser\frontend\views\index;
+use const otra\cache\php\BASE_PATH;
+use function otra\cache\php\block;
+
+/**
+ * @var string $viewPath
+ */
+require BASE_PATH . 'bundles/OtraUser/views/layout.phtml';
+
+const USER_EDITION_TITLE = 'Backoffice - User edition';
+block('title', USER_EDITION_TITLE);
+block('page', 'users-page');
+block('meta-description', USER_EDITION_TITLE);
+block('application-name', USER_EDITION_TITLE);
+block('og-site-name', USER_EDITION_TITLE);
+require $viewPath . 'partials/editUser.phtml';

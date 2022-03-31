@@ -31,6 +31,47 @@ $-defaults : (
 /// Main mixin that initializes the users management page component.
 ///
 /// @access public
+@mixin init() {
+  html[data-page="users-page"] {
+    @at-root {
+      @media (min-width : 700px) {
+        .table--link {
+          background      : none;
+          border          : 0;
+          cursor          : pointer;
+          font-size       : inherit;
+          padding         : 0;
+          text-decoration : underline;
+        }
+      }
+    }
+
+    th {
+      padding: 1rem * theming.$font-size;
+    }
+
+    tr {
+      & > td {
+        &:nth-child(2) {
+          vertical-align : top;
+        }
+      }
+
+      @at-root html[data-page="users-page"] .table--row--links {
+        transition  : opacity .25s ease-in-out;
+        will-change : opacity;
+      }
+
+      &:hover .table--row--links {
+        opacity : 1;
+      }
+
+      &:not(:hover) .table--row--links {
+        opacity : 0;
+      }
+    }
+  }
+}
 
 ///
 /// Main mixin that creates login pages.
@@ -72,12 +113,36 @@ $-defaults : (
       'mobile--th-padding' : 1rem * theming.$font-size,
       'desktop--td-padding' : 1rem * theming.$font-size,
       'mobile--td-padding' : 1rem * theming.$font-size,
-      'table-border' : null,
+      'table--border' : null,
+      'table--td--border' : null,
+      'table--th--border' : null,
       'themes' : $-themes
     )
   );
 
-  body.users-page {
+  html[data-page="users-page"] {
     @include theming.to-theme((#{&} : ('background-color', 'users--background-color')));
+
+    @at-root .table--link {
+      @include theming.to-theme((#{&} : ('color', 'users--table--action-link--color')));
+    }
+
+    thead > tr {
+      @include theming.to-theme((#{&} : ('background-image', 'users--tr-n-plus-one--background-image')));
+    }
+
+    tbody > tr {
+      &:nth-child(2n+1) {
+        @include theming.to-theme((#{&} : ('background-image', 'users--tr-n--background-image')));
+      }
+
+      &:nth-child(2n) {
+        @include theming.to-theme((#{&} : ('background-image', 'users--tr-n-plus-one--background-image')));
+      }
+
+      @at-root html[data-page="users-page"] a {
+        @include theming.to-theme((#{&} : ('color', 'users--table--link--color')));
+      }
+    }
   }
 }

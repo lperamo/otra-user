@@ -69,14 +69,6 @@ class LoginCheckActionTest extends TestCase
       [
         [
           'nonce' => 'nonce',
-          'src' => '/bundles/resources/js/spaCall.js'
-        ],
-        [
-          'nonce' => 'nonce',
-          'src' => '/bundles/resources/js/menu.js'
-        ],
-        [
-          'nonce' => 'nonce',
           'src' => '/bundles/OtraUser/backoffice/resources/js/userLogout.js'
         ]
       ],
